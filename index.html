@@ -1,0 +1,3034 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>VOGUE TOON! — Chúc Mừng Sinh Nhật Lưu Ngân Hà (Sweet 16)</title>
+  <meta name="description" content="Ấn phẩm truyện tranh tạp chí & hộp mù Blind Box hoạt hình đặc biệt mừng sinh nhật tuổi 16 của Lưu Ngân Hà." />
+  <meta name="theme-color" content="#FFFDF7" />
+
+  <!-- Google Fonts chuẩn Hoạt Hình / Comic / Hand-drawn hỗ trợ đầy đủ Tiếng Việt (UI/UX Pro Max Pairing) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800;900&family=Playpen+Sans:wght@500;600;700;800&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      /* Bảng màu Hoạt Họa / Storybook Pastel Hồng & Tím (UI/UX Pro Max Tokens) */
+      --bg-paper: #FFFDF7;
+      --bg-cream: #FFF6FA;
+      --ink: #2B1638;
+      --ink-soft: #5E3B73;
+      --pink-pop: #FF5C97;
+      --pink-light: #FFD1E3;
+      --pink-blush: #FFE8F2;
+      --lilac-pop: #9D4EDD;
+      --lilac-mid: #C77DFF;
+      --lilac-light: #EAD6FF;
+      --lilac-soft: #F5EBFF;
+      --butter: #FFE066;
+      --butter-light: #FFF3B0;
+      --mint: #A8F0DF;
+      --coral: #FF758F;
+      --white: #FFFFFF;
+
+      /* Viền mực truyện tranh & Bóng đổ khối hoạt hình */
+      --border-ink: 3px solid #2B1638;
+      --border-ink-thick: 3.5px solid #2B1638;
+      --shadow-toon: 5px 5px 0px #2B1638;
+      --shadow-toon-lg: 8px 8px 0px #2B1638;
+      --shadow-toon-sm: 3px 3px 0px #2B1638;
+      --shadow-btn: 0 5px 0 #2B1638;
+      --spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+      --font-display: 'Baloo 2', 'Fredoka', cursive, sans-serif;
+      --font-hand: 'Playpen Sans', cursive, sans-serif;
+      --font-body: 'Nunito', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      background-color: var(--bg-paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.5;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Nền giấy vẽ truyện tranh chấm bi & kẻ ô nhẹ */
+    body {
+      background-image:
+        radial-gradient(#F3D1E8 1.75px, transparent 1.75px),
+        radial-gradient(#E5D0F8 1.75px, #FFFDF7 1.75px);
+      background-size: 36px 36px;
+      background-position: 0 0, 18px 18px;
+    }
+
+    /* Tôn trọng prefers-reduced-motion theo chuẩn UI/UX Pro Max */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    #confettiCanvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 95;
+    }
+
+    /* Đồ họa mây & sao hoạt hình trôi nhẹ ở nền */
+    .toon-sky-decor {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    .floating-cloud {
+      position: absolute;
+      opacity: 0.85;
+      animation: floatCloud 9s ease-in-out infinite alternate;
+    }
+
+    .cloud-1 { top: 8%; left: 3%; width: 110px; }
+    .cloud-2 { top: 18%; right: 4%; width: 95px; animation-delay: -3s; }
+    .cloud-3 { bottom: 12%; left: 5%; width: 100px; animation-delay: -5s; }
+
+    /* =====================================================
+       THANH ĐIỀU HƯỚNG DẠNG TAB SỔ TAY STICKER (TOP NAV)
+       ===================================================== */
+    .storybook-nav {
+      position: fixed;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 80;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 8px;
+      background: var(--white);
+      border: var(--border-ink);
+      border-radius: 999px;
+      box-shadow: var(--shadow-toon);
+      max-width: 96vw;
+    }
+
+    .nav-tab {
+      border: 2px solid transparent;
+      background: transparent;
+      color: var(--ink);
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 800;
+      padding: 6px 12px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: transform 0.15s ease, background-color 0.15s ease;
+      white-space: nowrap;
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .nav-tab:hover {
+      background: var(--lilac-soft);
+    }
+
+    .nav-tab.active {
+      background: var(--pink-pop);
+      color: var(--white);
+      border: 2px solid var(--ink);
+      box-shadow: 2px 2px 0px var(--ink);
+    }
+
+    .nav-tab:focus-visible, .toon-btn:focus-visible, .sound-toggle:focus-visible {
+      outline: 3px solid var(--lilac-pop);
+      outline-offset: 2px;
+    }
+
+    .sound-toggle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 2.5px solid var(--ink);
+      background: var(--butter);
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 2px 3px 0px var(--ink);
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+      flex-shrink: 0;
+    }
+
+    .sound-toggle:active {
+      transform: translateY(2px);
+      box-shadow: 0 1px 0px var(--ink);
+    }
+
+    /* =====================================================
+       NÚT BẤM HOẠT HÌNH 3D (CHUNKY CARTOON BUTTONS)
+       ===================================================== */
+    .toon-btn {
+      font-family: var(--font-display);
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--ink);
+      background: var(--butter);
+      border: var(--border-ink);
+      border-radius: 18px;
+      padding: 12px 22px;
+      min-height: 48px;
+      cursor: pointer;
+      box-shadow: var(--shadow-btn);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.15s ease;
+      user-select: none;
+      text-decoration: none;
+    }
+
+    .toon-btn.pink {
+      background: var(--pink-pop);
+      color: var(--white);
+    }
+
+    .toon-btn.lilac {
+      background: var(--lilac-pop);
+      color: var(--white);
+    }
+
+    .toon-btn.cream {
+      background: var(--white);
+      color: var(--ink);
+    }
+
+    .toon-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 7px 0 var(--ink);
+    }
+
+    .toon-btn:active {
+      transform: translateY(4px);
+      box-shadow: 0 1px 0 var(--ink);
+    }
+
+    /* =====================================================
+       MÀN HÌNH INTRO: BƯU THIẾP HOẠT HÌNH & BÉ THỎ GIAO THƯ
+       ===================================================== */
+    .intro-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 100;
+      background:
+        radial-gradient(#F9C6E0 2px, transparent 2px),
+        linear-gradient(180deg, #FFF5FA 0%, #F5E8FF 100%);
+      background-size: 28px 28px, 100% 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: opacity 0.55s ease, visibility 0.55s ease;
+    }
+
+    .intro-overlay.closed {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .intro-storybook-card {
+      width: min(440px, 94vw);
+      background: var(--white);
+      border: var(--border-ink-thick);
+      border-radius: 32px;
+      padding: 28px 22px 26px;
+      box-shadow: var(--shadow-toon-lg);
+      text-align: center;
+      position: relative;
+    }
+
+    /* Băng dính Washi Tape dán góc trên */
+    .washi-tape {
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%) rotate(-2deg);
+      width: 130px;
+      height: 28px;
+      background: repeating-linear-gradient(
+        45deg,
+        rgba(255, 92, 151, 0.75),
+        rgba(255, 92, 151, 0.75) 10px,
+        rgba(255, 224, 102, 0.8) 10px,
+        rgba(255, 224, 102, 0.8) 20px
+      );
+      border: 2px solid var(--ink);
+      border-radius: 6px;
+      box-shadow: 2px 2px 0 rgba(43, 22, 56, 0.2);
+    }
+
+    .comic-pill-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--lilac-light);
+      border: 2.5px solid var(--ink);
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--ink);
+      box-shadow: 2px 2px 0 var(--ink);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .intro-mascot-stage {
+      width: 170px;
+      height: 155px;
+      margin: 4px auto 10px;
+      position: relative;
+    }
+
+    .intro-title {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 7.5vw, 40px);
+      font-weight: 800;
+      line-height: 1.05;
+      color: var(--pink-pop);
+      text-shadow: 2px 2px 0px var(--ink);
+      margin-bottom: 6px;
+    }
+
+    .intro-sub {
+      font-family: var(--font-hand);
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      margin-bottom: 16px;
+    }
+
+    .recipient-ticket {
+      background: var(--pink-blush);
+      border: 2.5px dashed var(--ink);
+      border-radius: 20px;
+      padding: 12px 16px;
+      margin-bottom: 20px;
+      position: relative;
+    }
+
+    .recipient-ticket-label {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--lilac-pop);
+    }
+
+    .recipient-ticket-name {
+      font-family: var(--font-display);
+      font-size: 25px;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.2;
+    }
+
+    /* =====================================================
+       BỐ CỤC CHÍNH 4 CHƯƠNG TRUYỆN TRANH / HOẠT HÌNH
+       ===================================================== */
+    .storybook-container {
+      position: relative;
+      z-index: 5;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 84px 16px 110px;
+      display: flex;
+      flex-direction: column;
+      gap: 64px;
+    }
+
+    .chapter-block {
+      scroll-margin-top: 78px;
+    }
+
+    .chapter-header {
+      margin-bottom: 18px;
+    }
+
+    .chapter-title {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 6.8vw, 38px);
+      font-weight: 800;
+      line-height: 1.1;
+      color: var(--ink);
+      margin-top: 6px;
+    }
+
+    .chapter-lead {
+      font-family: var(--font-hand);
+      font-size: 15px;
+      color: var(--ink-soft);
+      margin-top: 4px;
+    }
+
+    /* =====================================================
+       CHƯƠNG 1: BÌA TẠP CHÍ HOẠT HỌA VOGUE TOON!
+       ===================================================== */
+    .zine-cover-card {
+      position: relative;
+      background: linear-gradient(180deg, #FFE5F1 0%, #F2DCFF 55%, #FFF2B2 100%);
+      border: var(--border-ink-thick);
+      border-radius: 30px;
+      padding: 18px;
+      box-shadow: var(--shadow-toon-lg);
+      overflow: hidden;
+      transition: transform 0.2s ease;
+    }
+
+    .zine-top-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--white);
+      border: 2.5px solid var(--ink);
+      border-radius: 12px;
+      padding: 5px 12px;
+      font-family: var(--font-Mono, 'Space Mono', monospace);
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    .zine-masthead-box {
+      text-align: center;
+      position: relative;
+      margin-bottom: 10px;
+    }
+
+    .zine-masthead {
+      font-family: var(--font-display);
+      font-size: clamp(54px, 15vw, 82px);
+      font-weight: 800;
+      line-height: 0.9;
+      letter-spacing: 0.02em;
+      color: var(--pink-pop);
+      -webkit-text-stroke: 3px var(--ink);
+      text-shadow: 4px 4px 0px var(--ink);
+    }
+
+    .zine-sub-banner {
+      display: inline-block;
+      background: var(--butter);
+      border: 2.5px solid var(--ink);
+      border-radius: 999px;
+      padding: 3px 14px;
+      font-family: var(--font-hand);
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--ink);
+      box-shadow: 2px 2px 0 var(--ink);
+      transform: rotate(-1.5deg);
+      margin-top: 4px;
+    }
+
+    /* Khung Nhân Vật Hoạt Hình Trung Tâm (Hoặc Ảnh Thật Dán Sticker) */
+    .zine-illustration-window {
+      position: relative;
+      width: 100%;
+      min-height: 310px;
+      background: var(--white);
+      border: var(--border-ink-thick);
+      border-radius: 24px;
+      box-shadow: inset 0 0 0 5px var(--pink-light), var(--shadow-toon);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      overflow: hidden;
+    }
+
+    /* Tia sáng Comic Sunburst xoay nhẹ phía sau nhân vật */
+    .comic-sunburst {
+      position: absolute;
+      width: 480px;
+      height: 480px;
+      background: repeating-conic-gradient(
+        from 0deg,
+        rgba(255, 209, 227, 0.45) 0deg 15deg,
+        rgba(234, 214, 255, 0.45) 15deg 30deg
+      );
+      animation: spinSlow 28s linear infinite;
+      pointer-events: none;
+    }
+
+    .chibi-stage-svg {
+      position: relative;
+      z-index: 3;
+      width: 240px;
+      height: 235px;
+      animation: bounceIdle 3s ease-in-out infinite;
+    }
+
+    .user-cover-photo {
+      position: relative;
+      z-index: 4;
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 3px solid var(--ink);
+      display: none;
+    }
+
+    .user-cover-photo.visible {
+      display: block;
+    }
+
+    /* Bong bóng thoại Comic Speech Bubbles trên bìa */
+    .speech-bubble-left {
+      position: absolute;
+      top: 14px;
+      left: 12px;
+      z-index: 6;
+      max-width: 155px;
+      background: var(--white);
+      border: 2.5px solid var(--ink);
+      border-radius: 16px 16px 16px 4px;
+      padding: 8px 10px;
+      box-shadow: 3px 3px 0 var(--ink);
+      font-family: var(--font-hand);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.3;
+      transform: rotate(-3deg);
+    }
+
+    .speech-bubble-right {
+      position: absolute;
+      bottom: 58px;
+      right: 12px;
+      z-index: 6;
+      max-width: 160px;
+      background: var(--butter);
+      border: 2.5px solid var(--ink);
+      border-radius: 16px 16px 4px 16px;
+      padding: 8px 10px;
+      box-shadow: 3px 3px 0 var(--ink);
+      font-family: var(--font-hand);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.3;
+      transform: rotate(2.5deg);
+    }
+
+    .art-theme-tag {
+      position: relative;
+      z-index: 5;
+      margin-top: 6px;
+      background: var(--lilac-pop);
+      color: var(--white);
+      border: 2.5px solid var(--ink);
+      border-radius: 999px;
+      padding: 4px 14px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 800;
+      box-shadow: 2px 2px 0 var(--ink);
+    }
+
+    /* Footer Bìa Tạp Chí + Mã Vạch Siêu Thị Hoạt Hình */
+    .zine-bottom-row {
+      margin-top: 14px;
+      display: flex;
+      gap: 12px;
+      align-items: stretch;
+    }
+
+    .zine-star-box {
+      flex: 1;
+      background: var(--white);
+      border: 2.5px solid var(--ink);
+      border-radius: 18px;
+      padding: 10px 14px;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    .zine-star-label {
+      display: inline-block;
+      background: var(--pink-pop);
+      color: var(--white);
+      font-size: 10px;
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 99px;
+      border: 1.5px solid var(--ink);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .zine-star-name {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 5vw, 25px);
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.1;
+    }
+
+    .zine-star-quote {
+      font-family: var(--font-hand);
+      font-size: 12px;
+      color: var(--ink-soft);
+      margin-top: 3px;
+    }
+
+    .toon-barcode-btn {
+      background: var(--white);
+      border: 2.5px solid var(--ink);
+      border-radius: 18px;
+      padding: 8px 12px;
+      box-shadow: 3px 3px 0 var(--ink);
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      min-width: 108px;
+      transition: transform 0.12s ease;
+    }
+
+    .toon-barcode-btn:hover {
+      background: var(--butter-light);
+      transform: scale(1.03);
+    }
+
+    .barcode-scan-line {
+      position: absolute;
+      left: 6px;
+      right: 6px;
+      height: 3px;
+      background: var(--pink-pop);
+      border-radius: 99px;
+      animation: scanMove 1.6s ease-in-out infinite;
+    }
+
+    .cover-toolbar {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* Cụm Hoa Hồng & Hoa Sữa trang trí góc các Card */
+    .corner-floral-badge {
+      position: absolute;
+      z-index: 12;
+      pointer-events: none;
+      filter: drop-shadow(2px 2px 0px #2B1638);
+    }
+
+    .corner-floral-tl {
+      top: -16px;
+      left: -14px;
+      width: 78px;
+      height: 78px;
+      transform: rotate(-12deg);
+    }
+
+    .corner-floral-tr {
+      top: -16px;
+      right: -14px;
+      width: 78px;
+      height: 78px;
+      transform: rotate(14deg);
+    }
+
+    /* =====================================================
+       CARD HOA ĐẶC BIỆT: BÓ HOA HỒNG & HOA SỮA MÙA THU
+       ===================================================== */
+    .flower-storybook-card {
+      background: linear-gradient(180deg, #FFF9FC 0%, #F7ECFF 55%, #FFF4E6 100%);
+      border: var(--border-ink-thick);
+      border-radius: 32px;
+      padding: 24px 18px 28px;
+      box-shadow: var(--shadow-toon-lg);
+      position: relative;
+      text-align: center;
+    }
+
+    .bouquet-stage-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 340px;
+      height: 310px;
+      margin: 10px auto 14px;
+      background: var(--white);
+      border: var(--border-ink-thick);
+      border-radius: 26px;
+      box-shadow: inset 0 0 0 5px var(--lilac-light), var(--shadow-toon);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      overflow: hidden;
+    }
+
+    .bouquet-svg {
+      width: 285px;
+      height: 285px;
+      transition: transform 0.3s var(--spring);
+    }
+
+    .bouquet-stage-wrap:hover .bouquet-svg {
+      transform: scale(1.03);
+    }
+
+    .bouquet-stage-wrap:active .bouquet-svg {
+      transform: scale(0.96);
+    }
+
+    .flower-counter-pill {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: var(--butter);
+      border: 2.5px solid var(--ink);
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      font-weight: 800;
+      box-shadow: 2px 2px 0 var(--ink);
+      z-index: 5;
+    }
+
+    .scent-bubble {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: var(--pink-blush);
+      border: 2px solid var(--ink);
+      border-radius: 14px 14px 14px 4px;
+      padding: 5px 10px;
+      font-family: var(--font-hand);
+      font-size: 11.5px;
+      font-weight: 700;
+      box-shadow: 2px 2px 0 var(--ink);
+      z-index: 5;
+      max-width: 170px;
+      text-align: left;
+    }
+
+    .botanical-cards-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+      text-align: left;
+    }
+
+    .botanical-species-card {
+      background: var(--white);
+      border: var(--border-ink);
+      border-radius: 22px;
+      padding: 16px;
+      box-shadow: var(--shadow-toon);
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      transition: transform 0.2s ease;
+    }
+
+    .botanical-species-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .species-icon-box {
+      width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      border: 2.5px solid var(--ink);
+      box-shadow: 2px 2px 0 var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .species-name {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--ink);
+      line-height: 1.2;
+      margin-bottom: 4px;
+    }
+
+    .species-meaning {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--ink-soft);
+      line-height: 1.45;
+    }
+
+    @keyframes popBloom {
+      0% { transform: scale(0) rotate(-25deg); opacity: 0; }
+      80% { transform: scale(1.15) rotate(5deg); opacity: 1; }
+      100% { transform: scale(1) rotate(0deg); opacity: 1; }
+    }
+
+    .dynamic-bloom {
+      transform-origin: center;
+      animation: popBloom 0.45s var(--spring) forwards;
+    }
+
+    /* =====================================================
+       CHƯƠNG 2: PHÒNG THÍ NGHIỆM ĐỘ ĐÁNG YÊU & STICKER LẬT
+       ===================================================== */
+    .comic-panel-card {
+      background: var(--white);
+      border: var(--border-ink-thick);
+      border-radius: 28px;
+      padding: 22px 18px;
+      box-shadow: var(--shadow-toon-lg);
+      position: relative;
+    }
+
+    .panel-header-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--lilac-light);
+      border: 2.5px solid var(--ink);
+      border-radius: 16px;
+      padding: 10px 14px;
+      margin-bottom: 18px;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    .panel-header-title {
+      font-family: var(--font-display);
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--ink);
+    }
+
+    .potion-meters {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .potion-row {
+      background: var(--bg-cream);
+      border: 2.5px solid var(--ink);
+      border-radius: 18px;
+      padding: 12px 14px;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    .potion-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 800;
+      font-size: 14px;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
+
+    .potion-badge {
+      background: var(--butter);
+      border: 2px solid var(--ink);
+      border-radius: 99px;
+      padding: 2px 10px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .potion-tube {
+      width: 100%;
+      height: 20px;
+      background: var(--white);
+      border: 2.5px solid var(--ink);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+      padding: 2px;
+    }
+
+    .potion-liquid {
+      height: 100%;
+      border-radius: 999px;
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--pink-pop),
+        var(--pink-pop) 12px,
+        var(--lilac-pop) 12px,
+        var(--lilac-pop) 24px
+      );
+      transition: width 0.8s var(--spring);
+    }
+
+    .comic-explosion-banner {
+      display: none;
+      margin-top: 14px;
+      background: var(--butter);
+      border: 2.5px solid var(--ink);
+      border-radius: 16px;
+      padding: 10px 14px;
+      font-family: var(--font-hand);
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--ink);
+      text-align: center;
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+
+    .comic-explosion-banner.show {
+      display: block;
+      animation: popScale 0.4s var(--spring);
+    }
+
+    /* Bộ 3 Thẻ Sticker Hoạt Hình Lật Mặt */
+    .sticker-cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .sticker-flip {
+      height: 235px;
+      perspective: 900px;
+      cursor: pointer;
+    }
+
+    .sticker-flip-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transform-style: preserve-3d;
+      transition: transform 0.6s var(--spring);
+    }
+
+    .sticker-flip.flipped .sticker-flip-inner {
+      transform: rotateY(180deg);
+    }
+
+    .sticker-face, .sticker-back {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      border: var(--border-ink-thick);
+      border-radius: 24px;
+      padding: 16px 14px;
+      box-shadow: var(--shadow-toon);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      text-align: center;
+    }
+
+    .sticker-face {
+      background: var(--white);
+    }
+
+    .sticker-back {
+      background: var(--lilac-light);
+      transform: rotateY(180deg);
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .sticker-art-circle {
+      width: 78px;
+      height: 78px;
+      border-radius: 50%;
+      background: var(--pink-blush);
+      border: 2.5px solid var(--ink);
+      box-shadow: 2px 2px 0 var(--ink);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .sticker-art-circle img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .sticker-card-title {
+      font-family: var(--font-display);
+      font-size: 17px;
+      font-weight: 800;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .sticker-tap-pill {
+      background: var(--butter);
+      border: 2px solid var(--ink);
+      border-radius: 99px;
+      padding: 3px 10px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    /* =====================================================
+       CHƯƠNG 3: HỘP MÙ BLIND BOX ĐỒ CHƠI HOẠT HÌNH 3D
+       ===================================================== */
+    .blindbox-toon-arena {
+      background: linear-gradient(180deg, #F6E8FF 0%, #FFE6F2 100%);
+      border: var(--border-ink-thick);
+      border-radius: 32px;
+      padding: 26px 18px 30px;
+      box-shadow: var(--shadow-toon-lg);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .comic-speech-status {
+      display: inline-block;
+      background: var(--white);
+      border: 2.5px solid var(--ink);
+      border-radius: 20px;
+      padding: 8px 16px;
+      font-family: var(--font-hand);
+      font-size: 14px;
+      font-weight: 700;
+      box-shadow: 3px 3px 0 var(--ink);
+      margin-bottom: 14px;
+      max-width: 92%;
+    }
+
+    .toy-box-stage {
+      width: 250px;
+      height: 265px;
+      margin: 6px auto 16px;
+      position: relative;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .toy-box-svg-wrap {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.25s var(--spring);
+    }
+
+    .toy-box-svg-wrap.wobble {
+      animation: cartoonWobble 0.55s ease;
+    }
+
+    /* Dải băng kéo khóa xé hộp có hình cái kéo hoạt hình */
+    .zipper-tear-box {
+      max-width: 360px;
+      margin: 8px auto 10px;
+      background: var(--white);
+      border: 2.5px solid var(--ink);
+      border-radius: 22px;
+      padding: 14px 16px;
+      box-shadow: var(--shadow-toon);
+    }
+
+    .zipper-label-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-display);
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .toon-range-slider {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 40px;
+      border-radius: 999px;
+      background: repeating-linear-gradient(
+        -45deg,
+        var(--pink-light),
+        var(--pink-light) 14px,
+        var(--butter-light) 14px,
+        var(--butter-light) 28px
+      );
+      border: 2.5px dashed var(--ink);
+      outline: none;
+      padding: 0 6px;
+      cursor: grab;
+    }
+
+    .toon-range-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 64px;
+      height: 32px;
+      border-radius: 999px;
+      background: var(--pink-pop);
+      border: 2.5px solid var(--ink);
+      box-shadow: 2px 2px 0 var(--ink);
+      cursor: grabbing;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='18' viewBox='0 0 26 18' fill='none' stroke='%23FFFFFF' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 9h17M15 3l6 6-6 6'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* Bộ Sưu Tập 4 Vé Đặc Quyền & Nhân Vật Chibi sau khi mở hộp */
+    .coupon-tickets-grid {
+      display: none;
+      grid-template-columns: repeat(auto-fit, minmax(225px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+      text-align: left;
+    }
+
+    .coupon-tickets-grid.open {
+      display: grid;
+      animation: popScale 0.5s var(--spring);
+    }
+
+    .toon-coupon-card {
+      background: var(--white);
+      border: var(--border-ink-thick);
+      border-radius: 24px;
+      padding: 16px;
+      box-shadow: var(--shadow-toon);
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease;
+    }
+
+    .toon-coupon-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .toon-coupon-card.secret-edition {
+      background: linear-gradient(145deg, #FFF3B0 0%, #FFD1E3 55%, #EAD6FF 100%);
+    }
+
+    .coupon-rarity-tag {
+      display: inline-block;
+      align-self: flex-start;
+      background: var(--lilac-pop);
+      color: var(--white);
+      border: 2px solid var(--ink);
+      border-radius: 99px;
+      padding: 3px 10px;
+      font-family: var(--font-display);
+      font-size: 11px;
+      font-weight: 800;
+      box-shadow: 2px 2px 0 var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .toon-coupon-card.secret-edition .coupon-rarity-tag {
+      background: var(--pink-pop);
+    }
+
+    .coupon-title {
+      font-family: var(--font-display);
+      font-size: 19px;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .coupon-desc {
+      font-size: 13.5px;
+      color: var(--ink-soft);
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .coupon-Stub {
+      border-top: 2px dashed var(--ink);
+      padding-top: 8px;
+      font-family: 'Space Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    /* =====================================================
+       CHƯƠNG 4: BÁNH KEM HOẠT HÌNH & BÉ LỬA NHỎ (THỔI MIC)
+       ===================================================== */
+    .cake-toon-stage {
+      background: linear-gradient(180deg, #FFF5FA 0%, #F1E0FF 100%);
+      border: var(--border-ink-thick);
+      border-radius: 32px;
+      padding: 26px 18px 32px;
+      box-shadow: var(--shadow-toon-lg);
+      text-align: center;
+      position: relative;
+    }
+
+    .illustrated-cake-wrap {
+      width: 290px;
+      height: 270px;
+      margin: 4px auto 12px;
+      position: relative;
+      user-select: none;
+    }
+
+    /* Bảng điều khiển Hơi Thở Microphone Hoạt Hình */
+    .wind-meter-box {
+      max-width: 380px;
+      margin: 10px auto 0;
+      background: var(--white);
+      border: 2.5px solid var(--ink);
+      border-radius: 24px;
+      padding: 16px;
+      box-shadow: var(--shadow-toon);
+    }
+
+    .wind-bar-outer {
+      width: 100%;
+      height: 20px;
+      background: var(--lilac-soft);
+      border: 2.5px solid var(--ink);
+      border-radius: 999px;
+      padding: 2px;
+      margin: 10px 0 14px;
+      overflow: hidden;
+    }
+
+    .wind-bar-inner {
+      height: 100%;
+      width: 0%;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--mint), var(--butter), var(--pink-pop));
+      transition: width 0.08s ease;
+    }
+
+    /* Trang Sổ Tay Tâm Thư Hoạt Họa (Hiện ra sau khi thổi tắt nến) */
+    .notebook-letter-card {
+      display: none;
+      margin-top: 26px;
+      background:
+        repeating-linear-gradient(
+          to bottom,
+          #FFFDF9 0px,
+          #FFFDF9 29px,
+          #F3D5E8 29px,
+          #F3D5E8 31px
+        );
+      border: var(--border-ink-thick);
+      border-radius: 26px;
+      padding: 32px 22px 26px;
+      box-shadow: var(--shadow-toon-lg);
+      text-align: left;
+      position: relative;
+    }
+
+    .notebook-letter-card.visible {
+      display: block;
+      animation: popScale 0.55s var(--spring);
+    }
+
+    .notebook-rings {
+      position: absolute;
+      top: -12px;
+      left: 28px;
+      right: 28px;
+      height: 22px;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .notebook-ring {
+      width: 14px;
+      height: 24px;
+      background: var(--butter);
+      border: 2.5px solid var(--ink);
+      border-radius: 99px;
+    }
+
+    .letter-hand-greeting {
+      font-family: var(--font-display);
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--pink-pop);
+      margin-bottom: 10px;
+    }
+
+    .letter-hand-body {
+      font-family: var(--font-hand);
+      font-size: 15.5px;
+      font-weight: 600;
+      line-height: 1.95;
+      color: var(--ink);
+      white-space: pre-line;
+      margin-bottom: 16px;
+    }
+
+    .letter-hand-sign {
+      text-align: right;
+      font-family: var(--font-display);
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--lilac-pop);
+    }
+
+    /* =====================================================
+       THẺ BẬT MÍ MÓN QUÀ BÍ MẬT CUỐI CÙNG: BÉ THỎ SQUISHY
+       ===================================================== */
+    .final-squishy-surprise-card {
+      margin-top: 26px;
+      background: linear-gradient(135deg, #FFF3B0 0%, #FFE6F2 50%, #EAD6FF 100%);
+      border: var(--border-ink-thick);
+      border-radius: 30px;
+      padding: 24px 20px 26px;
+      box-shadow: var(--shadow-toon-lg);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .squishy-peek-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: var(--pink-pop);
+      color: var(--white);
+      border: 2.5px solid var(--ink);
+      border-radius: 999px;
+      padding: 4px 14px;
+      font-family: var(--font-display);
+      font-size: 12.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      box-shadow: 2px 2px 0 var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .squishy-preview-illustration {
+      width: 136px;
+      height: 126px;
+      margin: 4px auto 10px;
+      animation: bounceIdle 2.2s ease-in-out infinite;
+    }
+
+    .squishy-cta-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      max-width: 420px;
+      min-height: 56px;
+      padding: 12px 22px;
+      margin-top: 12px;
+      background: var(--pink-pop);
+      color: var(--white);
+      border: var(--border-ink-thick);
+      border-radius: 999px;
+      font-family: var(--font-display);
+      font-size: 18px;
+      font-weight: 800;
+      text-decoration: none;
+      box-shadow: var(--shadow-toon);
+      transition: transform 0.16s var(--spring), box-shadow 0.16s ease, background 0.16s ease;
+    }
+
+    .squishy-cta-link:hover {
+      background: var(--lilac-pop);
+      transform: translate(-2px, -3px) scale(1.02);
+      box-shadow: var(--shadow-toon-lg);
+    }
+
+    .squishy-cta-link:active {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--ink);
+    }
+
+    /* =====================================================
+       MODAL HÓA ĐƠN SIÊU THỊ HOẠT HÌNH KHI QUÉT MÃ VẠCH
+       ===================================================== */
+    .toon-modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 120;
+      background: rgba(43, 22, 56, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .toon-modal-backdrop.open {
+      display: flex;
+    }
+
+    .toon-receipt-paper {
+      width: min(370px, 94vw);
+      background: var(--white);
+      border: var(--border-ink-thick);
+      border-radius: 26px;
+      padding: 24px 20px;
+      box-shadow: var(--shadow-toon-lg);
+      text-align: center;
+      animation: popScale 0.35s var(--spring);
+    }
+
+    .receipt-line {
+      display: flex;
+      justify-content: space-between;
+      padding: 8px 0;
+      border-bottom: 2px dashed #E5D0F8;
+      font-size: 13.5px;
+      font-weight: 700;
+    }
+
+    /* Animations */
+    @keyframes floatCloud {
+      0% { transform: translateX(0px) translateY(0px); }
+      100% { transform: translateX(18px) translateY(-8px); }
+    }
+
+    @keyframes spinSlow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes bounceIdle {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-7px) rotate(1.5deg); }
+    }
+
+    @keyframes scanMove {
+      0%, 100% { top: 14%; }
+      50% { top: 82%; }
+    }
+
+    @keyframes popScale {
+      0% { opacity: 0; transform: scale(0.85); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    @keyframes cartoonWobble {
+      0%, 100% { transform: rotate(0deg) scale(1); }
+      20% { transform: rotate(-10deg) scale(1.06, 0.94); }
+      45% { transform: rotate(10deg) scale(0.95, 1.06); }
+      70% { transform: rotate(-6deg) scale(1.03, 0.98); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- =========================================================================
+       VÙNG CẤU HÌNH NHANH (CONFIG) — BẠN CHỈ CẦN SỬA NỘI DUNG Ở ĐÂY
+       ========================================================================= -->
+  <script>
+    const BIRTHDAY_CONFIG = {
+      herName: "Lưu Ngân Hà",                 // Tên của cô ấy
+      herTitle: "Sweet 16 • The Shining Star", // Dòng chữ phụ trên bìa tạp chí
+      yourName: "Một người sắp đặc biệt",      // Tên của bạn ở cuối bức thư
+      birthdayDate: "27 • 10",                // Ngày tháng sinh nhật trên mã vạch
+      issueNumber: "SỐ ĐẶC BIỆT • SWEET 16",  // Số phát hành
+      ageBadge: "Sweet 16!",                  // Chữ trên thân bánh kem
+
+      // Ảnh thật (Để trống "" sẽ hiển thị Nhân Vật Hoạt Hình Chibi Hồng-Tím cực đáng yêu)
+      coverPhotoUrl: "",
+      memoryPhotos: ["", "", ""],
+
+      // Lời thoại Bong bóng truyện tranh trên bìa
+      coverHeadlineLeft: "Cảnh báo: Độ rạng rỡ hôm nay tăng vọt 1000%!",
+      coverHeadlineRight: "Dải Ngân Hà rực rỡ nhất vũ trụ chính là ở đây!",
+      coverMainQuote: "Ấn phẩm đặc biệt mừng tuổi 16 rạng rỡ của cô gái mang tên dải ngân hà",
+
+      // Ý nghĩa Card Hoa Hồng & Hoa Sữa Mùa Thu
+      roseCardTitle: "Hoa Hồng Phấn & Tím Lilac",
+      roseCardMeaning: "Tượng trưng cho sự tươi trẻ, rực rỡ và nét duyên dáng của tuổi 16. Mong Ngân Hà luôn tràn đầy năng lượng, rạng rỡ và yêu đời như những ngày thu đẹp trời.",
+      milkFlowerTitle: "Hoa Sữa Tháng Mười",
+      milkFlowerMeaning: "Những chùm hoa nhỏ li ti trắng kem đặc trưng của mùa thu — dịu dàng, trong trẻo và mang theo hương vị đặc biệt nhất của tháng Mười, giống hệt nét hồn nhiên của Ngân Hà.",
+
+      // 3 Thẻ Sticker lật mặt ở Chương 2
+      flipCards: [
+        {
+          type: "crown",
+          frontTitle: "Chứng Nhận Cô Gái Tháng 10",
+          backText: "Tháng Mười có gió heo may, có mùi hoa sữa dịu ngọt và có một Ngân Hà tròn 16 tuổi vừa thông minh, vừa có nét đáng yêu rất riêng!"
+        },
+        {
+          type: "boba",
+          frontTitle: "Năng Lượng Trà Sữa Full Topping",
+          backText: "Bật mí: Chỉ cần một ly trà sữa ngọt ngào hoặc món ăn ngon là mọi áp lực học hành thi cử đều tan biến ngay tắp lự!"
+        },
+        {
+          type: "crystal",
+          frontTitle: "Quả Cầu Tiên Tri Sweet 16",
+          backText: "Dự báo tuổi 16 của Ngân Hà: Học hành suôn sẻ, thi cử như ý, ngập tràn may mắn và luôn là phiên bản tự tin, tỏa sáng nhất!"
+        }
+      ],
+
+      // 4 Vé Đặc Quyền trong Hộp Blind Box Hoạt Hình (Chương 3)
+      blindBoxCards: [
+        {
+          rarity: "SSR • ĐẶC QUYỀN ĂN NGON",
+          title: "1 Chầu Trà Sữa / Món Ngon Tự Chọn",
+          desc: "Hiệu lực vô thời hạn. Anh bao trọn gói món ngon mà Ngân Hà thích nhất, chỉ cần Hà lên lịch là xuất phát!",
+          code: "TICKET #TREAT-2710"
+        },
+        {
+          rarity: "UR • ĐỒNG MINH ĐẮC LỰC",
+          title: "Trợ Thủ Đắc Lực Khi Cần",
+          desc: "Bất kể lúc nào Ngân Hà cần người lắng nghe tâm sự, hỗ trợ bài vở hay làm đồng minh gỡ rối thì luôn có mặt!",
+          code: "TICKET #ALLY-247"
+        },
+        {
+          rarity: "SSR • KIM BÀI BẢO HIỂM",
+          title: "Vé Miễn Trừ Trêu Chọc",
+          desc: "Mỗi khi bị anh trêu chọc, Ngân Hà có quyền rút vé này ra. Anh lập tức 'đóng băng', nhận thua vô điều kiện và bao đồ ăn chuộc lỗi!",
+          code: "TICKET #PEACE-16"
+        },
+        {
+          rarity: "SECRET 1/144 • ĐIỀU ƯỚC TUỔI 16",
+          title: "Mở Khóa Bánh Kem & Điều Ước",
+          desc: "Chúc mừng Ngân Hà bốc trúng thẻ SECRET hiếm nhất! Hãy kéo xuống dưới ước một điều thật đẹp cho tuổi 16 và thổi nến nhé!",
+          code: "SECRET #WISH-2026",
+          isSecret: true
+        }
+      ],
+
+      // Bức Tâm Thư Sổ Tay (Hiện ra sau khi thổi tắt nến ở Chương 4)
+      loveLetterGreeting: "Gửi Lưu Ngân Hà — cô gái của mùa thu tháng Mười,",
+      loveLetterBody:
+        "Chúc mừng sinh nhật tròn 16 tuổi của Ngân Hà!\n\n" +
+        "Tuổi 16 — một cột mốc thanh xuân thật đẹp với biết bao ước mơ, những nụ cười trong trẻo và những trải nghiệm mới mẻ đang đón chờ phía trước.\n\n" +
+        "Anh chúc Ngân Hà tuổi mới luôn giữ được nét hồn nhiên, tích cực và rạng rỡ như hiện tại. Chúc em học tập thật tốt, thi cử luôn suôn sẻ, thuận lợi và đạt được mọi mục tiêu mà bản thân ấp ủ.\n\n" +
+        "Hy vọng món quà hoạt hình nhỏ này sẽ mang lại cho Hà thật nhiều niềm vui và những tràng cười sảng khoái trong ngày sinh nhật. Mong rằng tuổi 16 của Ngân Hà sẽ luôn lấp lánh và rực rỡ như chính dải ngân hà vậy!\n\n" +
+        "Happy 16th Birthday, Lưu Ngân Hà ✨"
+    };
+  </script>
+
+  <!-- Canvas Pháo Giấy Hoạt Hình -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- Mây & Sao Hoạt Hình Trôi Nền (100% Vector SVG) -->
+  <div class="toon-sky-decor" aria-hidden="true">
+    <svg class="floating-cloud cloud-1" viewBox="0 0 120 70" fill="none">
+      <path d="M28 56H94C104 56 112 48 112 38C112 29 105 21 96 20C92 9 81 2 68 2C53 2 41 12 38 25C36 24 33 24 30 24C18 24 8 34 8 46C8 52 17 56 28 56Z" fill="#FFFFFF" stroke="#2B1638" stroke-width="3"/>
+    </svg>
+    <svg class="floating-cloud cloud-2" viewBox="0 0 120 70" fill="none">
+      <path d="M28 56H94C104 56 112 48 112 38C112 29 105 21 96 20C92 9 81 2 68 2C53 2 41 12 38 25C36 24 33 24 30 24C18 24 8 34 8 46C8 52 17 56 28 56Z" fill="#FFE8F2" stroke="#2B1638" stroke-width="3"/>
+    </svg>
+    <svg class="floating-cloud cloud-3" viewBox="0 0 120 70" fill="none">
+      <path d="M28 56H94C104 56 112 48 112 38C112 29 105 21 96 20C92 9 81 2 68 2C53 2 41 12 38 25C36 24 33 24 30 24C18 24 8 34 8 46C8 52 17 56 28 56Z" fill="#EAD6FF" stroke="#2B1638" stroke-width="3"/>
+    </svg>
+  </div>
+
+  <!-- =====================================================
+       MÀN HÌNH CHÀO MỪNG: BÉ THỎ TARO GIAO ẤN PHẨM SINH NHẬT
+       ===================================================== -->
+  <div class="intro-overlay" id="introOverlay" role="dialog" aria-modal="true" aria-labelledby="introTitle">
+    <div class="intro-storybook-card">
+      <div class="washi-tape" aria-hidden="true"></div>
+
+      <!-- Hoa Hồng & Chùm Hoa Sữa trang trí góc thiệp mở đầu -->
+      <svg class="corner-floral-badge corner-floral-tl" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+        <path d="M16 56 C10 38, 28 24, 46 32" stroke="#2B1638" stroke-width="3" fill="#A8F0DF"/>
+        <!-- Đóa Hoa Hồng Phấn -->
+        <circle cx="34" cy="36" r="18" fill="#FF5C97" stroke="#2B1638" stroke-width="3"/>
+        <path d="M24 34 C28 24, 42 26, 42 36 C42 44, 28 44, 30 35 C32 30, 38 32, 36 37" stroke="#2B1638" stroke-width="2.5" stroke-linecap="round" fill="#FFD1E3"/>
+        <!-- Chùm Hoa Sữa 5 cánh trắng kem -->
+        <g transform="translate(54, 22)">
+          <circle cx="0" cy="-7" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="7" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+          <circle cx="4" cy="6" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="-4" cy="6" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+          <circle cx="-7" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="0" cy="0" r="3" fill="#FFE066" stroke="#2B1638" stroke-width="1.8"/>
+        </g>
+      </svg>
+
+      <svg class="corner-floral-badge corner-floral-tr" viewBox="0 0 80 80" fill="none" aria-hidden="true">
+        <!-- Đóa Hoa Hồng Tím Lilac -->
+        <circle cx="46" cy="36" r="17" fill="#C77DFF" stroke="#2B1638" stroke-width="3"/>
+        <path d="M37 34 C41 25, 53 27, 53 36 C53 43, 41 43, 43 35" stroke="#2B1638" stroke-width="2.5" stroke-linecap="round" fill="#EAD6FF"/>
+        <!-- Chùm Hoa Sữa trắng kem -->
+        <g transform="translate(24, 24)">
+          <circle cx="0" cy="-7" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="7" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+          <circle cx="4" cy="6" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="-4" cy="6" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+          <circle cx="-7" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="0" cy="0" r="3" fill="#A8F0DF" stroke="#2B1638" stroke-width="1.8"/>
+        </g>
+      </svg>
+
+      <div class="comic-pill-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="#FF5C97" stroke="#2B1638" stroke-width="2.5" aria-hidden="true">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+        </svg>
+        <span>Special Cartoon Edition</span>
+      </div>
+
+      <!-- Linh Vật Hoạt Hình: Bé Thỏ Hồng Tím Ôm Phong Bì Thư -->
+      <div class="intro-mascot-stage" aria-hidden="true">
+        <svg viewBox="0 0 200 180" width="100%" height="100%" fill="none">
+          <!-- Tai thỏ trái & phải lắc lư -->
+          <path d="M68 72 C52 24, 74 10, 86 48" fill="#FFD1E3" stroke="#2B1638" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M69 62 C60 32, 74 22, 81 50" fill="#FF5C97"/>
+          <path d="M132 72 C148 24, 126 10, 114 48" fill="#EAD6FF" stroke="#2B1638" stroke-width="3.5" stroke-linecap="round"/>
+          <path d="M131 62 C140 32, 126 22, 119 50" fill="#9D4EDD"/>
+          <!-- Đầu Bé Thỏ -->
+          <ellipse cx="100" cy="88" rx="48" ry="40" fill="#FFFFFF" stroke="#2B1638" stroke-width="3.5"/>
+          <!-- Nơ Tím trên đầu -->
+          <path d="M100 50 L82 40 L84 58 Z" fill="#C77DFF" stroke="#2B1638" stroke-width="3" stroke-linejoin="round"/>
+          <path d="M100 50 L118 40 L116 58 Z" fill="#C77DFF" stroke="#2B1638" stroke-width="3" stroke-linejoin="round"/>
+          <circle cx="100" cy="50" r="6" fill="#FFE066" stroke="#2B1638" stroke-width="3"/>
+          <!-- Mắt long lanh & Má hồng -->
+          <circle cx="80" cy="84" r="5.5" fill="#2B1638"/>
+          <circle cx="78" cy="82" r="2" fill="#FFFFFF"/>
+          <circle cx="120" cy="84" r="5.5" fill="#2B1638"/>
+          <circle cx="118" cy="82" r="2" fill="#FFFFFF"/>
+          <ellipse cx="68" cy="93" rx="7" ry="4" fill="#FF85B3"/>
+          <ellipse cx="132" cy="93" rx="7" ry="4" fill="#FF85B3"/>
+          <!-- Miệng cười chữ w -->
+          <path d="M93 91 Q96.5 96 100 91 Q103.5 96 107 91" stroke="#2B1638" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <!-- Phong bì thư hồng trước ngực -->
+          <rect x="54" y="112" width="92" height="58" rx="12" fill="#FF5C97" stroke="#2B1638" stroke-width="3.5"/>
+          <path d="M56 116 L100 144 L144 116" fill="#FFD1E3" stroke="#2B1638" stroke-width="3.5" stroke-linejoin="round"/>
+          <!-- Con dấu trái tim vàng -->
+          <path d="M100 150 C100 150, 88 141, 88 134 C88 129, 94 127, 98 131 L100 134 L102 131 C106 127, 112 129, 112 134 C112 141, 100 150, 100 150 Z" fill="#FFE066" stroke="#2B1638" stroke-width="2.5"/>
+          <!-- Tay tròn ôm thư -->
+          <ellipse cx="54" cy="134" rx="11" ry="8" fill="#FFFFFF" stroke="#2B1638" stroke-width="3.5"/>
+          <ellipse cx="146" cy="134" rx="11" ry="8" fill="#FFFFFF" stroke="#2B1638" stroke-width="3.5"/>
+        </svg>
+      </div>
+
+      <h1 class="intro-title" id="introTitle">VOGUE TOON!</h1>
+      <p class="intro-sub">Truyện tranh tạp chí & Hộp mù Blind Box mừng sinh nhật</p>
+
+      <div class="recipient-ticket">
+        <div class="recipient-ticket-label">Gửi tới nhân vật chính hôm nay</div>
+        <div class="recipient-ticket-name" id="introHerName">Lưu Ngân Hà</div>
+      </div>
+
+      <button class="toon-btn pink" id="openBookBtn" style="width: 100%; font-size: 17px;">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/>
+          <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+        </svg>
+        <span>Mở Cuốn Truyện & Đập Hộp Quà!</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- =====================================================
+       THANH ĐIỀU HƯỚNG CÁC CHƯƠNG
+       ===================================================== -->
+  <nav class="storybook-nav" aria-label="Điều hướng các chương">
+    <button class="nav-tab active" onclick="jumpChapter('chap1', this)">01. Bìa</button>
+    <button class="nav-tab" onclick="jumpChapter('chapFlowers', this)">02. Card Hoa</button>
+    <button class="nav-tab" onclick="jumpChapter('chap2', this)">03. Chỉ Số</button>
+    <button class="nav-tab" onclick="jumpChapter('chap3', this)">04. Blind Box</button>
+    <button class="nav-tab" onclick="jumpChapter('chap4', this)">05. Thổi Nến</button>
+    <button class="sound-toggle" id="musicBtn" aria-label="Bật hoặc tắt nhạc nền" title="Bật/Tắt nhạc hộp nhạc">
+      <svg id="soundIconOn" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2B1638" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M9 18V5l12-2v13"/>
+        <circle cx="6" cy="18" r="3" fill="#FF5C97"/>
+        <circle cx="18" cy="16" r="3" fill="#9D4EDD"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- =====================================================
+       NỘI DUNG 4 CHƯƠNG HOẠT HÌNH
+       ===================================================== -->
+  <main class="storybook-container">
+
+    <!-- CHƯƠNG 1: BÌA TẠP CHÍ HOẠT HỌA VOGUE TOON -->
+    <section class="chapter-block" id="chap1">
+      <div class="chapter-header">
+        <div class="comic-pill-badge">Chương 01 • Cover Girl</div>
+        <h2 class="chapter-title">Ấn Phẩm Bìa Đặc Biệt</h2>
+        <p class="chapter-lead">
+          Đổi các concept hoạt hình dễ thương của Ngân Hà hoặc dán ảnh thật lên bìa. Nhớ bấm vào <strong>mã vạch ngày sinh</strong> ở góc dưới nhé!
+        </p>
+      </div>
+
+      <div class="zine-cover-card" id="zineCoverCard">
+        <div class="zine-top-strip">
+          <span id="coverIssueText">SỐ ĐẶC BIỆT • SWEET 16</span>
+          <span>PINK & LILAC TOON</span>
+        </div>
+
+        <div class="zine-masthead-box">
+          <div class="zine-masthead">VOGUE</div>
+          <div class="zine-sub-banner" id="coverHerTitle">Sweet 16 Star • Lưu Ngân Hà</div>
+        </div>
+
+        <div class="zine-illustration-window">
+          <div class="comic-sunburst" aria-hidden="true"></div>
+
+          <!-- Bong bóng thoại Trái & Phải -->
+          <div class="speech-bubble-left" id="coverLeftText">
+            Cảnh báo: Độ rạng rỡ hôm nay tăng vọt 1000%!
+          </div>
+
+          <div class="speech-bubble-right" id="coverRightText">
+            Dải Ngân Hà rực rỡ nhất vũ trụ chính là ở đây!
+          </div>
+
+          <!-- Ảnh thật của người dùng nếu chọn -->
+          <img id="coverPhotoImg" class="user-cover-photo" alt="Ảnh bìa nhân vật sinh nhật" />
+
+          <!-- Nhân vật Hoạt Hình Chibi (Mặc định) -->
+          <div id="chibiCoverWrap" style="display:flex; flex-direction:column; align-items:center;">
+            <svg class="chibi-stage-svg" id="chibiSvgScene" viewBox="0 0 240 230" fill="none" aria-label="Minh họa hoạt hình nhân vật sinh nhật">
+              <!-- Sẽ được render động bởi 3 Concept Hoạt Hình -->
+            </svg>
+            <div class="art-theme-tag" id="chibiThemeName">Nàng Thơ Hoa Hồng & Hoa Sữa Tháng 10</div>
+          </div>
+        </div>
+
+        <!-- Chân bìa + Mã vạch -->
+        <div class="zine-bottom-row">
+          <div class="zine-star-box">
+            <span class="zine-star-label">Nhân Vật Chính</span>
+            <div class="zine-star-name" id="coverHerName">Lưu Ngân Hà</div>
+            <div class="zine-star-quote" id="coverQuoteText">
+              Ấn phẩm đặc biệt mừng tuổi 16 rạng rỡ của cô gái mang tên dải ngân hà
+            </div>
+          </div>
+
+          <button class="toon-barcode-btn" id="barcodeBtn" aria-label="Quét mã vạch ngày sinh để xem định giá">
+            <div class="barcode-scan-line" aria-hidden="true"></div>
+            <svg width="74" height="32" viewBox="0 0 74 32" fill="#2B1638" aria-hidden="true">
+              <rect x="2" y="2" width="4" height="28"/><rect x="9" y="2" width="2" height="28"/>
+              <rect x="14" y="2" width="6" height="28"/><rect x="23" y="2" width="2" height="28"/>
+              <rect x="28" y="2" width="4" height="28"/><rect x="35" y="2" width="7" height="28"/>
+              <rect x="45" y="2" width="2" height="28"/><rect x="50" y="2" width="5" height="28"/>
+              <rect x="58" y="2" width="3" height="28"/><rect x="64" y="2" width="6" height="28"/>
+            </svg>
+            <span style="font-family:'Space Mono',monospace; font-size:11px; font-weight:700; margin-top:3px;" id="barcodeDateText">27 • 10</span>
+            <span style="font-size:10px; font-weight:800; color:var(--pink-pop);">BẤM QUÉT MÃ</span>
+          </button>
+        </div>
+      </div>
+
+      <div class="cover-toolbar">
+        <button class="toon-btn cream" id="switchChibiBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+          <span>Đổi Nhân Vật Hoạt Hình (4 Style)</span>
+        </button>
+
+        <button class="toon-btn lilac" id="pickPhotoBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="3" width="18" height="18" rx="4"/>
+            <circle cx="8.5" cy="8.5" r="1.5"/>
+            <path d="M21 15l-5-5L5 21"/>
+          </svg>
+          <span>Dán Ảnh Thật Lên Bìa</span>
+        </button>
+        <input type="file" id="photoInput" accept="image/*" style="display:none" />
+      </div>
+    </section>
+
+    <!-- =====================================================
+         CARD HOA ĐẶC BIỆT: BÓ HOA HỒNG & HOA SỮA MÙA THU
+         ===================================================== -->
+    <section class="chapter-block" id="chapFlowers">
+      <div class="chapter-header">
+        <div class="comic-pill-badge">Chương 02 • Autumn Floral Card</div>
+        <h2 class="chapter-title">Bó Hoa Hồng & Hoa Sữa Tháng 10</h2>
+        <p class="chapter-lead">
+          Món quà mùa thu dành riêng cho Ngân Hà: sự kết hợp giữa những đóa <strong>Hoa Hồng Phấn - Tím</strong> ngọt ngào và những chùm <strong>Hoa Sữa trắng kem</strong> thơm dịu. Chạm vào bó hoa để cắm thêm hoa mới nhé!
+        </p>
+      </div>
+
+      <div class="flower-storybook-card">
+        <div class="washi-tape" aria-hidden="true"></div>
+
+        <!-- Khung Bó Hoa Hoạt Hình Tương Tác -->
+        <div class="bouquet-stage-wrap" id="bouquetStage" role="button" tabindex="0" aria-label="Bó hoa hồng và hoa sữa mùa thu, chạm để cắm thêm hoa">
+          <div class="scent-bubble" id="scentBubbleText">
+            Hương hoa sữa & hoa hồng đang tỏa ngát...
+          </div>
+          <div class="flower-counter-pill" id="flowerCountBadge">
+            12 bông & chùm hoa
+          </div>
+
+          <svg class="bouquet-svg" viewBox="0 0 280 280" fill="none" aria-label="Minh họa bó hoa hồng và hoa sữa">
+            <!-- Giấy gói hoa Pastel Tím Lilac phía sau -->
+            <path d="M52 108 L140 52 L228 108 L192 224 H88 L52 108 Z" fill="#EAD6FF" stroke="#2B1638" stroke-width="3.5" stroke-linejoin="round"/>
+            <path d="M68 118 L140 72 L212 118 L184 218 H96 L68 118 Z" fill="#FFE8F2" stroke="#2B1638" stroke-width="3" stroke-linejoin="round"/>
+
+            <!-- Lá xanh hoa sữa (Lá mọc vòng đặc trưng của cây Hoa Sữa) -->
+            <g stroke="#2B1638" stroke-width="2.8" fill="#A8F0DF">
+              <ellipse cx="78" cy="108" rx="22" ry="9" transform="rotate(-32 78 108)"/>
+              <ellipse cx="202" cy="108" rx="22" ry="9" transform="rotate(32 202 108)"/>
+              <ellipse cx="106" cy="76" rx="20" ry="8" transform="rotate(-15 106 76)"/>
+              <ellipse cx="174" cy="76" rx="20" ry="8" transform="rotate(15 174 76)"/>
+              <ellipse cx="68" cy="138" rx="18" ry="8" transform="rotate(-48 68 138)"/>
+              <ellipse cx="212" cy="138" rx="18" ry="8" transform="rotate(48 212 138)"/>
+            </g>
+
+            <!-- CHÙM HOA SỮA TRÁI (Cluster of 5-petaled creamy white Alstonia blossoms) -->
+            <g id="milkClusterLeft" transform="translate(86, 94)">
+              <g transform="translate(-14, -8)">
+                <circle cx="0" cy="-6" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="6" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+                <circle cx="4" cy="5" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="-4" cy="5" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+                <circle cx="-6" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="0" cy="0" r="2.8" fill="#FFE066" stroke="#2B1638" stroke-width="1.6"/>
+              </g>
+              <g transform="translate(8, -14)">
+                <circle cx="0" cy="-6" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="6" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+                <circle cx="4" cy="5" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="-4" cy="5" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+                <circle cx="-6" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="0" cy="0" r="2.8" fill="#A8F0DF" stroke="#2B1638" stroke-width="1.6"/>
+              </g>
+              <g transform="translate(-2, 8)">
+                <circle cx="0" cy="-6" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="6" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+                <circle cx="4" cy="5" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="-4" cy="5" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+                <circle cx="-6" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="0" cy="0" r="2.8" fill="#FFE066" stroke="#2B1638" stroke-width="1.6"/>
+              </g>
+            </g>
+
+            <!-- CHÙM HOA SỮA PHẢI -->
+            <g id="milkClusterRight" transform="translate(194, 94)">
+              <g transform="translate(-8, -14)">
+                <circle cx="0" cy="-6" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="6" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+                <circle cx="4" cy="5" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="-4" cy="5" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+                <circle cx="-6" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="0" cy="0" r="2.8" fill="#FFE066" stroke="#2B1638" stroke-width="1.6"/>
+              </g>
+              <g transform="translate(14, -6)">
+                <circle cx="0" cy="-6" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="6" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+                <circle cx="4" cy="5" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="-4" cy="5" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+                <circle cx="-6" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="0" cy="0" r="2.8" fill="#A8F0DF" stroke="#2B1638" stroke-width="1.6"/>
+              </g>
+              <g transform="translate(2, 9)">
+                <circle cx="0" cy="-6" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="6" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+                <circle cx="4" cy="5" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="-4" cy="5" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+                <circle cx="-6" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="0" cy="0" r="2.8" fill="#FFE066" stroke="#2B1638" stroke-width="1.6"/>
+              </g>
+            </g>
+
+            <!-- 3 ĐÓA HOA HỒNG CHỦ ĐẠO (Hồng Đậm, Hồng Phấn, Tím Lilac) -->
+            <!-- Đóa Hồng Phấn Trái -->
+            <g transform="translate(104, 128)">
+              <circle cx="0" cy="0" r="26" fill="#FFD1E3" stroke="#2B1638" stroke-width="3.2"/>
+              <path d="M-16 -4 C-12 -18, 14 -18, 16 -2 C18 14, -14 16, -12 2 C-10 -8, 8 -8, 8 2 C8 8, -4 8, -2 1" fill="#FF5C97" stroke="#2B1638" stroke-width="2.6" stroke-linecap="round"/>
+            </g>
+            <!-- Đóa Hồng Tím Lilac Phải -->
+            <g transform="translate(176, 128)">
+              <circle cx="0" cy="0" r="26" fill="#EAD6FF" stroke="#2B1638" stroke-width="3.2"/>
+              <path d="M-16 -4 C-12 -18, 14 -18, 16 -2 C18 14, -14 16, -12 2 C-10 -8, 8 -8, 8 2 C8 8, -4 8, -2 1" fill="#C77DFF" stroke="#2B1638" stroke-width="2.6" stroke-linecap="round"/>
+            </g>
+            <!-- Đóa Hồng Lớn Trung Tâm -->
+            <g transform="translate(140, 102)">
+              <circle cx="0" cy="0" r="30" fill="#FF5C97" stroke="#2B1638" stroke-width="3.5"/>
+              <path d="M-19 -5 C-14 -21, 16 -21, 19 -2 C21 16, -16 18, -14 2 C-12 -10, 10 -10, 10 2 C10 10, -5 10, -2 1" fill="#FFD1E3" stroke="#2B1638" stroke-width="2.8" stroke-linecap="round"/>
+            </g>
+
+            <!-- Vùng chứa các bông Hoa Hồng & Hoa Sữa nở thêm khi người dùng bấm -->
+            <g id="extraBloomsGroup"></g>
+
+            <!-- Giấy gói hoa vạt trước & Chiếc Nơ Ruy Băng Lớn -->
+            <path d="M84 152 L140 184 L196 152 L176 244 H104 L84 152 Z" fill="#FFFFFF" stroke="#2B1638" stroke-width="3.5" stroke-linejoin="round"/>
+            <path d="M104 244 L96 264 H184 L176 244 Z" fill="#FFD1E3" stroke="#2B1638" stroke-width="3.2" stroke-linejoin="round"/>
+            <!-- Nơ Hồng Ruy Băng -->
+            <path d="M140 198 L104 180 L108 214 Z" fill="#FF5C97" stroke="#2B1638" stroke-width="3.2" stroke-linejoin="round"/>
+            <path d="M140 198 L176 180 L172 214 Z" fill="#FF5C97" stroke="#2B1638" stroke-width="3.2" stroke-linejoin="round"/>
+            <path d="M134 202 L118 242 M146 202 L162 242" stroke="#2B1638" stroke-width="4" stroke-linecap="round"/>
+            <circle cx="140" cy="198" r="10" fill="#FFE066" stroke="#2B1638" stroke-width="3.2"/>
+          </svg>
+        </div>
+
+        <!-- Nút Tương Tác Cắm Thêm Hoa & Thả Mưa Hoa -->
+        <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap; margin-top:8px;">
+          <button class="toon-btn pink" id="addFlowerBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="12" cy="12" r="4"/>
+              <path d="M12 2a4 4 0 0 1 4 4c0 1.95-1.4 3.58-3.25 3.93L12 10l-.75-.07A4 4 0 0 1 8 6a4 4 0 0 1 4-4z"/>
+              <path d="M12 22a4 4 0 0 1-4-4c0-1.95 1.4-3.58 3.25-3.93L12 14l.75.07A4 4 0 0 1 16 18a4 4 0 0 1-4 4z"/>
+              <path d="M2 12a4 4 0 0 1 4-4c1.95 0 3.58 1.4 3.93 3.25L10 12l-.07.75A4 4 0 0 1 6 16a4 4 0 0 1-4-4z"/>
+              <path d="M22 12a4 4 0 0 1-4 4c-1.95 0-3.58-1.4-3.93-3.25L14 12l.07-.75A4 4 0 0 1 18 8a4 4 0 0 1 4 4z"/>
+            </svg>
+            <span>Cắm Thêm Hoa Hồng & Hoa Sữa</span>
+          </button>
+
+          <button class="toon-btn cream" id="petalRainBtn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4"/>
+            </svg>
+            <span>Thả Mưa Cánh Hoa Mùa Thu</span>
+          </button>
+        </div>
+
+        <!-- 2 Card Giải Nghĩa Hoa Hồng & Hoa Sữa -->
+        <div class="botanical-cards-row">
+          <div class="botanical-species-card">
+            <div class="species-icon-box" style="background:var(--pink-blush);">
+              <svg width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <circle cx="24" cy="24" r="17" fill="#FF5C97" stroke="#2B1638" stroke-width="3"/>
+                <path d="M14 22 C17 12, 31 12, 33 23 C34 32, 16 33, 18 23 C19 18, 28 18, 27 24" fill="#FFD1E3" stroke="#2B1638" stroke-width="2.5" stroke-linecap="round"/>
+              </svg>
+            </div>
+            <div>
+              <div class="species-name" id="roseTitleText">Hoa Hồng Phấn & Tím Lilac</div>
+              <p class="species-meaning" id="roseMeaningText">
+                Tượng trưng cho sự tươi trẻ, rực rỡ và nét duyên dáng của tuổi 16. Mong Ngân Hà luôn tràn đầy năng lượng, rạng rỡ và yêu đời như những ngày thu đẹp trời.
+              </p>
+            </div>
+          </div>
+
+          <div class="botanical-species-card">
+            <div class="species-icon-box" style="background:var(--lilac-soft);">
+              <svg width="40" height="40" viewBox="0 0 48 48" fill="none" aria-hidden="true">
+                <g transform="translate(24, 24)">
+                  <circle cx="0" cy="-10" r="6.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2.5"/>
+                  <circle cx="9.5" cy="-3" r="6.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2.5"/>
+                  <circle cx="6" cy="8" r="6.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2.5"/>
+                  <circle cx="-6" cy="8" r="6.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2.5"/>
+                  <circle cx="-9.5" cy="-3" r="6.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2.5"/>
+                  <circle cx="0" cy="0" r="4.5" fill="#FFE066" stroke="#2B1638" stroke-width="2.2"/>
+                </g>
+              </svg>
+            </div>
+            <div>
+              <div class="species-name" id="milkFlowerTitleText">Hoa Sữa Tháng Mười</div>
+              <p class="species-meaning" id="milkFlowerMeaningText">
+                Những chùm hoa nhỏ li ti trắng kem đặc trưng của mùa thu — dịu dàng, trong trẻo và mang theo hương vị đặc biệt nhất của tháng Mười, giống hệt nét hồn nhiên của Ngân Hà.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHƯƠNG 2: PHÒNG THÍ NGHIỆM ĐỘ ĐÁNG YÊU & STICKER LẬT -->
+    <section class="chapter-block" id="chap2">
+      <div class="chapter-header">
+        <div class="comic-pill-badge">Chương 02 • Cute Lab</div>
+        <h2 class="chapter-title">Máy Đo Chỉ Số Tuổi 16</h2>
+        <p class="chapter-lead">
+          Phòng thí nghiệm đo lường các chỉ số năng lượng đặc trưng của cô gái tháng 10.
+        </p>
+      </div>
+
+      <div class="comic-panel-card">
+        <div class="panel-header-strip">
+          <span class="panel-header-title">Bình Đo Năng Lượng Tích Cực</span>
+          <span class="potion-badge" style="background:var(--mint);">Độ chính xác: 1000%</span>
+        </div>
+
+        <div class="potion-meters">
+          <div class="potion-row">
+            <div class="potion-top">
+              <span>Độ tươi tắn & năng lượng tích cực</span>
+              <span class="potion-badge" id="statVal1">1000%</span>
+            </div>
+            <div class="potion-tube">
+              <div class="potion-liquid" style="width: 100%;"></div>
+            </div>
+          </div>
+
+          <div class="potion-row">
+            <div class="potion-top">
+              <span>Độ chuẩn chỉ & lý lẽ sắc bén</span>
+              <span class="potion-badge" id="statVal2">100% Bất Bại</span>
+            </div>
+            <div class="potion-tube">
+              <div class="potion-liquid" style="width: 100%;"></div>
+            </div>
+          </div>
+
+          <div class="potion-row">
+            <div class="potion-top">
+              <span>Tốc độ kêu đói bụng sau khi vừa ăn xong</span>
+              <span class="potion-badge" id="statVal3">98.5%</span>
+            </div>
+            <div class="potion-tube">
+              <div class="potion-liquid" style="width: 95%;"></div>
+            </div>
+          </div>
+
+          <div class="potion-row">
+            <div class="potion-top">
+              <span>Chỉ số may mắn & rạng rỡ tuổi mới</span>
+              <span class="potion-badge" id="statVal4">Vô Cực</span>
+            </div>
+            <div class="potion-tube">
+              <div class="potion-liquid" style="width: 100%;"></div>
+            </div>
+          </div>
+        </div>
+
+        <button class="toon-btn" id="recalcBtn" style="width:100%; margin-top:16px;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M10 2v7.31L4.72 18.55A2 2 0 0 0 6.45 21.5h11.1a2 2 0 0 0 1.73-2.95L14 9.31V2"/>
+            <path d="M8.5 2h7"/>
+            <path d="M7 16h10"/>
+          </svg>
+          <span>Bấm Đo Lại Thật Khách Quan!</span>
+        </button>
+
+        <div class="comic-explosion-banner" id="recalcBanner"></div>
+      </div>
+
+      <p class="chapter-lead" style="margin-top: 22px;">
+        Chạm vào <strong>3 tấm thẻ Sticker</strong> bên dưới để lật xem góc mật báo:
+      </p>
+      <div class="sticker-cards-grid" id="stickerGrid"></div>
+    </section>
+
+    <!-- CHƯƠNG 3: ĐẬP HỘP MÙ BLIND BOX HOẠT HÌNH 3D -->
+    <section class="chapter-block" id="chap3">
+      <div class="chapter-header">
+        <div class="comic-pill-badge">Chương 03 • Pop Toy Blind Box</div>
+        <h2 class="chapter-title">Đập Hộp Blind Box Bí Mật</h2>
+        <p class="chapter-lead">
+          Chạm vào chiếc hộp đồ chơi để <strong>lắc thử nghe tiếng lọc cọc</strong>, rồi kéo chiếc kéo ngang qua vạch đứt để khui hộp nhé!
+        </p>
+      </div>
+
+      <div class="blindbox-toon-arena">
+        <div class="comic-speech-status" id="boxSpeechText">
+          Chạm vào hộp để lắc thử xem bên trong có gì nào!
+        </div>
+
+        <!-- Hộp Blind Box Hoạt Hình có tai thỏ thập thò -->
+        <div class="toy-box-stage" id="toyBoxStage" role="button" tabindex="0" aria-label="Hộp mù Blind Box sinh nhật, chạm để lắc hộp">
+          <div class="toy-box-svg-wrap" id="toyBoxVisual">
+            <svg viewBox="0 0 240 255" width="100%" height="100%" fill="none">
+              <!-- Tai thỏ bí ẩn thập thò phía sau nắp hộp -->
+              <g id="peekingEars">
+                <path d="M88 52 C76 14, 96 6, 106 46" fill="#FFD1E3" stroke="#2B1638" stroke-width="3.5"/>
+                <path d="M152 52 C164 14, 144 6, 134 46" fill="#EAD6FF" stroke="#2B1638" stroke-width="3.5"/>
+              </g>
+              <!-- Nắp hộp trên -->
+              <g id="boxLidGroup" style="transition: transform 0.6s cubic-bezier(0.34,1.56,0.64,1), opacity 0.4s;">
+                <rect x="26" y="42" width="188" height="44" rx="14" fill="#FF5C97" stroke="#2B1638" stroke-width="4"/>
+                <rect x="38" y="51" width="164" height="10" rx="5" fill="#FFE066" stroke="#2B1638" stroke-width="2.5"/>
+                <text x="120" y="77" text-anchor="middle" fill="#FFFFFF" font-family="Baloo 2, sans-serif" font-weight="800" font-size="14">SECRET SERIES</text>
+              </g>
+              <!-- Thân hộp chính -->
+              <rect x="32" y="82" width="176" height="158" rx="22" fill="#FFFFFF" stroke="#2B1638" stroke-width="4"/>
+              <rect x="44" y="94" width="152" height="134" rx="16" fill="#F5EBFF" stroke="#2B1638" stroke-width="3"/>
+              <!-- Ngôi sao & Dấu hỏi chấm hoạt hình ở giữa hộp -->
+              <circle cx="120" cy="150" r="38" fill="#FFD1E3" stroke="#2B1638" stroke-width="3.5"/>
+              <text x="120" y="166" text-anchor="middle" fill="#2B1638" font-family="Baloo 2, sans-serif" font-weight="800" font-size="48" id="boxQuestionMark">?</text>
+              <!-- Nhãn dưới đáy hộp -->
+              <rect x="60" y="198" width="120" height="22" rx="11" fill="#FFE066" stroke="#2B1638" stroke-width="2.5"/>
+              <text x="120" y="213" text-anchor="middle" fill="#2B1638" font-family="Nunito, sans-serif" font-weight="900" font-size="10">100% TRÚNG ĐẶC QUYỀN</text>
+            </svg>
+          </div>
+        </div>
+
+        <!-- Thanh kéo xé hộp -->
+        <div class="zipper-tear-box" id="zipperBox">
+          <div class="zipper-label-row">
+            <span>Kéo đường răng cưa để xé nắp hộp</span>
+            <span id="zipperPercent">0%</span>
+          </div>
+          <input type="range" min="0" max="100" value="0" class="toon-range-slider" id="zipperSlider" aria-label="Kéo sang phải để xé nắp hộp Blind Box" />
+        </div>
+
+        <!-- 4 Thẻ Vé Đặc Quyền hiện ra khi mở hộp -->
+        <div class="coupon-tickets-grid" id="couponGrid"></div>
+      </div>
+    </section>
+
+    <!-- CHƯƠNG 4: BÁNH KEM HOẠT HÌNH & BÉ LỬA NHỎ (THỔI NẾN QUA MIC) -->
+    <section class="chapter-block" id="chap4">
+      <div class="chapter-header">
+        <div class="comic-pill-badge">Chương 04 • Make A Wish</div>
+        <h2 class="chapter-title">Thổi Tắt "Bé Lửa Nhỏ"</h2>
+        <p class="chapter-lead">
+          Hãy ước một điều thật đẹp cho tuổi 16, sau đó <strong>bật Microphone và thổi vào điện thoại</strong> (hoặc nhấn giữ nút thổi) để xem biểu cảm của Bé Lửa Nhỏ trên ngọn nến nhé!
+        </p>
+      </div>
+
+      <div class="cake-toon-stage">
+        <!-- Bánh Sinh Nhật Hoạt Hình 2 Tầng + Bé Lửa Nhỏ Có Mắt Mũi -->
+        <div class="illustrated-cake-wrap" id="cakeTouchArea">
+          <svg viewBox="0 0 300 270" width="100%" height="100%" fill="none" aria-label="Bánh sinh nhật hoạt hình hồng tím">
+            <!-- Vầng sáng vàng ấm quanh ngọn nến -->
+            <circle id="flameGlowCircle" cx="150" cy="52" r="46" fill="#FFE066" opacity="0.45"/>
+
+            <!-- Khói trắng hoạt hình bay lên khi tắt nến -->
+            <g id="cartoonSmokeGroup" opacity="0" style="transition: opacity 0.4s ease, transform 1.2s ease;">
+              <path d="M138 45 C128 35, 136 20, 148 24 C156 14, 172 22, 164 36 C172 44, 158 54, 148 48 Z" fill="#FFFFFF" stroke="#2B1638" stroke-width="2.5"/>
+              <text x="150" y="16" text-anchor="middle" fill="#5E3B73" font-family="Playpen Sans, cursive" font-size="12" font-weight="700">Phùuu~!</text>
+            </g>
+
+            <!-- BÉ LỬA NHỎ (Living Cartoon Fire Sprite) -->
+            <g id="livingFlameGroup" style="transform-origin: 150px 76px; transition: transform 0.08s ease-out, opacity 0.25s ease;">
+              <path d="M150 18 C168 38, 176 56, 168 68 C162 76, 138 76, 132 68 C124 56, 132 38, 150 18 Z" fill="#FF9E00" stroke="#2B1638" stroke-width="3"/>
+              <path d="M150 28 C161 42, 166 55, 160 65 C156 71, 144 71, 140 65 C134 55, 139 42, 150 28 Z" fill="#FFE066"/>
+              <!-- Đôi mắt tròn xoe của Bé Lửa Nhỏ -->
+              <circle cx="144" cy="56" r="2.8" fill="#2B1638"/>
+              <circle cx="156" cy="56" r="2.8" fill="#2B1638"/>
+              <path id="flameMouth" d="M147 62 Q150 65 153 62" stroke="#2B1638" stroke-width="2.2" stroke-linecap="round"/>
+            </g>
+
+            <!-- Cây nến sọc hồng trắng -->
+            <rect x="141" y="74" width="18" height="44" rx="5" fill="#FFFFFF" stroke="#2B1638" stroke-width="3"/>
+            <path d="M142 86 L158 78 M142 100 L158 92 M142 114 L158 106" stroke="#FF5C97" stroke-width="4"/>
+
+            <!-- Tầng bánh trên (Hồng Dâu Tây) -->
+            <rect x="78" y="116" width="144" height="58" rx="16" fill="#FFD1E3" stroke="#2B1638" stroke-width="3.5"/>
+            <!-- Lớp kem chảy hoạt hình tầng trên -->
+            <path d="M78 128 C78 120, 86 116, 94 116 H206 C214 116, 222 120, 222 128 V134 C214 134, 214 146, 204 146 C194 146, 194 132, 184 132 C174 132, 174 148, 162 148 C150 148, 150 132, 138 132 C126 132, 126 146, 114 146 C102 146, 102 134, 92 134 C84 134, 78 138, 78 128 Z" fill="#FFFFFF" stroke="#2B1638" stroke-width="3"/>
+            <!-- Bảng tên tuổi trên tầng bánh trên -->
+            <rect x="102" y="147" width="96" height="22" rx="11" fill="#FFE066" stroke="#2B1638" stroke-width="2.5"/>
+            <text x="150" y="162" text-anchor="middle" fill="#2B1638" font-family="Baloo 2, sans-serif" font-weight="800" font-size="12" id="cakeAgeText">Sweet 16!</text>
+
+            <!-- Tầng bánh dưới (Tím Khoai Môn Lilac) -->
+            <rect x="46" y="170" width="208" height="72" rx="20" fill="#EAD6FF" stroke="#2B1638" stroke-width="3.5"/>
+            <path d="M46 184 C46 174, 56 170, 66 170 H234 C244 170, 254 174, 254 184 V190 C242 190, 242 204, 228 204 C214 204, 214 188, 198 188 C182 188, 182 206, 166 206 C150 206, 150 188, 134 188 C118 188, 118 204, 102 204 C86 204, 86 188, 70 188 C58 188, 46 196, 46 184 Z" fill="#FF5C97" stroke="#2B1638" stroke-width="3"/>
+
+            <!-- Dâu tây, Hoa Hồng kem & Hoa Sữa trang trí tầng dưới -->
+            <g transform="translate(80, 218)">
+              <circle cx="0" cy="0" r="11" fill="#FF5C97" stroke="#2B1638" stroke-width="2.6"/>
+              <path d="M-6 -2 C-4 -8, 6 -8, 6 0 C6 6, -5 6, -3 0" fill="#FFD1E3" stroke="#2B1638" stroke-width="2"/>
+            </g>
+            <g transform="translate(126, 218)">
+              <circle cx="0" cy="-5" r="4" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="5" cy="-1" r="4" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+              <circle cx="3" cy="4" r="4" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="-3" cy="4" r="4" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+              <circle cx="-5" cy="-1" r="4" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="0" cy="0" r="2.5" fill="#FFE066" stroke="#2B1638" stroke-width="1.6"/>
+            </g>
+            <g transform="translate(174, 218)">
+              <circle cx="0" cy="0" r="11" fill="#C77DFF" stroke="#2B1638" stroke-width="2.6"/>
+              <path d="M-6 -2 C-4 -8, 6 -8, 6 0 C6 6, -5 6, -3 0" fill="#EAD6FF" stroke="#2B1638" stroke-width="2"/>
+            </g>
+            <g transform="translate(220, 218)">
+              <circle cx="0" cy="-5" r="4" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="5" cy="-1" r="4" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+              <circle cx="3" cy="4" r="4" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="-3" cy="4" r="4" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+              <circle cx="-5" cy="-1" r="4" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="0" cy="0" r="2.5" fill="#FFE066" stroke="#2B1638" stroke-width="1.6"/>
+            </g>
+
+            <!-- Đĩa đựng bánh kem -->
+            <rect x="28" y="240" width="244" height="16" rx="8" fill="#FFFFFF" stroke="#2B1638" stroke-width="3.5"/>
+          </svg>
+        </div>
+
+        <!-- Khung Điều Khiển Microphone & Thanh Gió -->
+        <div class="wind-meter-box">
+          <div style="font-family:var(--font-hand); font-size:14px; font-weight:700;" id="micPromptText">
+            Bé Lửa Nhỏ đang chờ Ngân Hà ước nguyện rồi thổi phù một hơi thật mạnh!
+          </div>
+
+          <div class="wind-bar-outer" aria-label="Thanh đo lực thổi nến">
+            <div class="wind-bar-inner" id="windBarFill"></div>
+          </div>
+
+          <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+            <button class="toon-btn pink" id="enableMicBtn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="2" width="6" height="11" rx="3"/>
+                <path d="M5 10a7 7 0 0 0 14 0"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+              </svg>
+              <span>Bật Mic Thổi Nến Thật</span>
+            </button>
+
+            <button class="toon-btn cream" id="holdToBlowBtn">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"/>
+              </svg>
+              <span>Nhấn Giữ Để Thổi</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Trang Sổ Tay Tâm Thư Hiện Ra Sau Khi Thổi Nến -->
+        <div class="notebook-letter-card" id="notebookLetter">
+          <div class="notebook-rings" aria-hidden="true">
+            <div class="notebook-ring"></div><div class="notebook-ring"></div>
+            <div class="notebook-ring"></div><div class="notebook-ring"></div>
+            <div class="notebook-ring"></div><div class="notebook-ring"></div>
+          </div>
+
+          <div class="letter-hand-greeting" id="letterGreeting">Gửi Lưu Ngân Hà — cô gái của mùa thu tháng Mười,</div>
+          <div class="letter-hand-body" id="letterBody"></div>
+          <div class="letter-hand-sign" id="letterSign">— Một người sắp đặc biệt</div>
+
+          <div style="text-align:center; margin-top:18px;">
+            <button class="toon-btn cream" id="relightBtn">
+              <span>Thắp Lại Nến Ước Thêm Điều Nữa</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- MÓN QUÀ BÍ MẬT CUỐI CÙNG Ở CUỐI TRANG: BÉ THỎ SQUISHY CHẬM TĂNG -->
+        <div class="final-squishy-surprise-card" id="secretSquishyCard">
+          <div class="squishy-peek-badge">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="#FFE066" stroke="#2B1638" stroke-width="2.5" aria-hidden="true">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+            <span>Khoan Đã! Vẫn Còn 1 Món Quà Đặc Biệt Nữa!</span>
+          </div>
+
+          <!-- Minh họa Bé Thỏ Usagi (Chiikawa) Squishy nhún nhảy mời gọi (dùng trực tiếp ảnh gốc Usagi 100%) -->
+          <div class="squishy-preview-illustration" aria-hidden="true">
+            <img src="/usagi.png" alt="Bé Thỏ Usagi Squishy" style="width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 6px 0 rgba(65,36,32,0.14));" />
+          </div>
+
+          <h3 style="font-family:var(--font-display); font-size:clamp(22px, 4vw, 28px); font-weight:800; line-height:1.15; margin-bottom:6px;">
+            Còn 1 Món Quà Đặc Biệt Nữa: Bé Thỏ Usagi Squishy!
+          </h3>
+          <p style="font-size:14.5px; font-weight:700; color:var(--ink-soft); max-width:520px; margin:0 auto;">
+            “Uraaa! Yahaaa!” — Anh để ý thấy Hà cực kỳ thích nét nhí nhố của <strong>Usagi</strong> và cảm giác bóp những bé Squishy mềm mịn chậm tăng, nên ở đường dẫn bí mật phía sau cánh cửa này có một bé <strong>Usagi Squishy Chậm Tăng</strong> mềm mịn đang đợi Hà vào bóp dẹp lép, véo má và kéo tai đó!
+          </p>
+
+          <a href="squishy.html" class="squishy-cta-link">
+            <span>Hãy Bấm Vào Đây Để Bóp Bé Thỏ Usagi!</span>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL HÓA ĐƠN QUÉT MÃ VẠCH -->
+  <div class="toon-modal-backdrop" id="receiptModal" role="dialog" aria-modal="true" aria-labelledby="receiptHeading">
+    <div class="toon-receipt-paper">
+      <div class="comic-pill-badge" style="background:var(--butter);">Máy Quét Kỷ Niệm Tuổi 16</div>
+      <h3 id="receiptHeading" style="font-family:var(--font-display); font-size:22px; margin-bottom:12px;">
+        HÓA ĐƠN ĐẶC BIỆT TUỔI 16
+      </h3>
+      <div class="receipt-line"><span>Nhân vật chính:</span><span id="receiptName">Lưu Ngân Hà</span></div>
+      <div class="receipt-line"><span>Mã số ngày sinh:</span><span id="receiptDate">27 • 10</span></div>
+      <div class="receipt-line"><span>Thành phần:</span><span>100% Trong Trẻo, Rạng Rỡ & Đáng Yêu</span></div>
+      <div class="receipt-line"><span>Tác dụng phụ:</span><span>Lan tỏa năng lượng vui vẻ cho mọi người</span></div>
+      <div class="receipt-line"><span>Người gửi lời chúc:</span><span id="receiptOwner">Một người sắp đặc biệt</span></div>
+
+      <div style="margin:16px 0; padding:10px; background:var(--pink-blush); border:2.5px solid var(--ink); border-radius:14px; font-family:var(--font-display); font-size:18px; font-weight:800; color:var(--pink-pop);">
+        ĐỊNH GIÁ: VÔ GIÁ (PHIÊN BẢN DUY NHẤT)
+      </div>
+
+      <button class="toon-btn pink" style="width:100%;" onclick="closeReceipt()">
+        <span>Nhận Chứng Nhận Tuổi 16 Rực Rỡ</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       JAVASCRIPT: ĐỒ HỌA HOẠT HÌNH SVG, WEB AUDIO SYNTH, BLIND BOX & MIC
+       ========================================================================= -->
+  <script>
+    // 1. BỘ 4 CONCEPT NHÂN VẬT HOẠT HÌNH CHIBI TRÊN BÌA VOGUE TOON
+    const CHIBI_SCENES = [
+      {
+        name: "Nàng Thơ Hoa Hồng & Hoa Sữa Tháng 10",
+        svg: `
+          <!-- Mái tóc dài bồng bềnh màu Tím Đậm -->
+          <path d="M56 122 C42 74, 82 38, 120 38 C158 38, 198 74, 184 122 C194 154, 174 190, 152 186 L88 186 C66 190, 46 154, 56 122 Z" fill="#5E3B73" stroke="#2B1638" stroke-width="3.5"/>
+          <!-- Khuôn mặt Chibi -->
+          <ellipse cx="120" cy="108" rx="46" ry="40" fill="#FFF2EC" stroke="#2B1638" stroke-width="3.5"/>
+          <path d="M74 96 C82 66, 158 66, 166 96 C152 84, 138 92, 120 82 C102 92, 88 84, 74 96 Z" fill="#7B4B94" stroke="#2B1638" stroke-width="3.2"/>
+          <!-- Vòng Hoa Hồng & Hoa Sữa đội đầu -->
+          <circle cx="88" cy="64" r="11" fill="#FF5C97" stroke="#2B1638" stroke-width="2.6"/>
+          <circle cx="152" cy="64" r="11" fill="#C77DFF" stroke="#2B1638" stroke-width="2.6"/>
+          <g transform="translate(120, 58)">
+            <circle cx="0" cy="-6" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="6" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+            <circle cx="4" cy="5" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="-4" cy="5" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+            <circle cx="-6" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="0" cy="0" r="3" fill="#FFE066" stroke="#2B1638" stroke-width="1.8"/>
+          </g>
+          <!-- Mắt long lanh & Má hồng -->
+          <ellipse cx="98" cy="110" rx="7.5" ry="9" fill="#2B1638"/>
+          <circle cx="95" cy="106" r="3" fill="#FFFFFF"/>
+          <ellipse cx="142" cy="110" rx="7.5" ry="9" fill="#2B1638"/>
+          <circle cx="139" cy="106" r="3" fill="#FFFFFF"/>
+          <ellipse cx="83" cy="121" rx="8" ry="4.5" fill="#FF85B3"/>
+          <ellipse cx="157" cy="121" rx="8" ry="4.5" fill="#FF85B3"/>
+          <path d="M113 120 Q120 128 127 120" stroke="#2B1638" stroke-width="2.8" stroke-linecap="round" fill="none"/>
+          <!-- Ôm bó Hoa Hồng & Hoa Sữa trước ngực -->
+          <path d="M84 148 L120 216 L156 148 Z" fill="#FFE8F2" stroke="#2B1638" stroke-width="3.2" stroke-linejoin="round"/>
+          <circle cx="106" cy="154" r="14" fill="#FF5C97" stroke="#2B1638" stroke-width="2.8"/>
+          <circle cx="134" cy="154" r="14" fill="#C77DFF" stroke="#2B1638" stroke-width="2.8"/>
+          <g transform="translate(120, 142)">
+            <circle cx="0" cy="-6" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="6" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+            <circle cx="4" cy="5" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="-4" cy="5" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/>
+            <circle cx="-6" cy="-2" r="4.5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2"/><circle cx="0" cy="0" r="3" fill="#FFE066" stroke="#2B1638" stroke-width="1.8"/>
+          </g>
+        `
+      },
+      {
+        name: "Nàng Thơ Vương Miện Dâu Tây",
+        svg: `
+          <!-- Tóc xù bồng bềnh màu Tím Đậm -->
+          <path d="M58 122 C44 74, 82 40, 120 40 C158 40, 196 74, 182 122 C192 152, 174 188, 152 184 L88 184 C66 188, 48 152, 58 122 Z" fill="#5E3B73" stroke="#2B1638" stroke-width="3.5"/>
+          <!-- Vương miện vàng đính dâu hồng -->
+          <path d="M86 58 L98 28 L120 46 L142 28 L154 58 Z" fill="#FFE066" stroke="#2B1638" stroke-width="3.2" stroke-linejoin="round"/>
+          <circle cx="120" cy="24" r="6" fill="#FF5C97" stroke="#2B1638" stroke-width="2.5"/>
+          <!-- Khuôn mặt bánh bao -->
+          <ellipse cx="120" cy="108" rx="46" ry="40" fill="#FFF2EC" stroke="#2B1638" stroke-width="3.5"/>
+          <!-- Mái tóc ngố dễ thương -->
+          <path d="M74 96 C82 66, 158 66, 166 96 C152 84, 138 92, 120 82 C102 92, 88 84, 74 96 Z" fill="#7B4B94" stroke="#2B1638" stroke-width="3.2"/>
+          <!-- Đôi mắt to tròn lấp lánh kiểu Anime/Chibi -->
+          <ellipse cx="98" cy="110" rx="7.5" ry="9" fill="#2B1638"/>
+          <circle cx="95" cy="106" r="3" fill="#FFFFFF"/>
+          <circle cx="101" cy="114" r="1.5" fill="#FF85B3"/>
+          <ellipse cx="142" cy="110" rx="7.5" ry="9" fill="#2B1638"/>
+          <circle cx="139" cy="106" r="3" fill="#FFFFFF"/>
+          <circle cx="145" cy="114" r="1.5" fill="#FF85B3"/>
+          <!-- Má hồng phúng phính -->
+          <ellipse cx="83" cy="121" rx="8" ry="4.5" fill="#FF85B3"/>
+          <ellipse cx="157" cy="121" rx="8" ry="4.5" fill="#FF85B3"/>
+          <!-- Nụ cười tươi -->
+          <path d="M113 120 Q120 129 127 120" fill="#FF5C97" stroke="#2B1638" stroke-width="2.8" stroke-linecap="round"/>
+          <!-- Váy phồng công chúa Hồng - Tím -->
+          <path d="M82 146 L158 146 L176 212 L64 212 Z" fill="#FF5C97" stroke="#2B1638" stroke-width="3.5" stroke-linejoin="round"/>
+          <path d="M98 146 L142 146 L150 212 L90 212 Z" fill="#FFD1E3" stroke="#2B1638" stroke-width="3"/>
+          <!-- Đũa phép ngôi sao -->
+          <line x1="184" y1="122" x2="162" y2="168" stroke="#2B1638" stroke-width="3.5" stroke-linecap="round"/>
+          <polygon points="188 102 193 113 205 115 196 123 198 135 188 129 178 135 180 123 171 115 183 113" fill="#FFE066" stroke="#2B1638" stroke-width="2.8"/>
+        `
+      },
+      {
+        name: "Thiên Thần Trà Sữa Khoai Môn",
+        svg: `
+          <!-- Hai búi tóc tròn kiểu Pucca/Sanrio màu Tím Lilac -->
+          <circle cx="66" cy="68" r="24" fill="#9D4EDD" stroke="#2B1638" stroke-width="3.5"/>
+          <circle cx="174" cy="68" r="24" fill="#9D4EDD" stroke="#2B1638" stroke-width="3.5"/>
+          <ellipse cx="120" cy="106" rx="46" ry="40" fill="#FFF2EC" stroke="#2B1638" stroke-width="3.5"/>
+          <path d="M74 94 C86 62, 154 62, 166 94 Z" fill="#9D4EDD" stroke="#2B1638" stroke-width="3.2"/>
+          <!-- Mắt nháy tinh nghịch (Wink) -->
+          <path d="M90 108 Q98 100 106 108" stroke="#2B1638" stroke-width="3.5" stroke-linecap="round" fill="none"/>
+          <ellipse cx="142" cy="108" rx="7.5" ry="9" fill="#2B1638"/>
+          <circle cx="139" cy="104" r="3" fill="#FFFFFF"/>
+          <ellipse cx="84" cy="118" rx="8" ry="4.5" fill="#FF85B3"/>
+          <ellipse cx="156" cy="118" rx="8" ry="4.5" fill="#FF85B3"/>
+          <path d="M114 118 Q120 126 126 118" stroke="#2B1638" stroke-width="3" stroke-linecap="round" fill="none"/>
+          <!-- Ôm ly trà sữa trân châu khổng lồ -->
+          <rect x="88" y="138" width="64" height="76" rx="12" fill="#EAD6FF" stroke="#2B1638" stroke-width="3.5"/>
+          <rect x="82" y="132" width="76" height="12" rx="6" fill="#FF5C97" stroke="#2B1638" stroke-width="3"/>
+          <rect x="115" y="114" width="10" height="22" fill="#FFE066" stroke="#2B1638" stroke-width="2.8"/>
+          <!-- Hạt trân châu -->
+          <circle cx="104" cy="198" r="5" fill="#2B1638"/><circle cx="120" cy="201" r="5" fill="#2B1638"/>
+          <circle cx="136" cy="198" r="5" fill="#2B1638"/><circle cx="112" cy="188" r="5" fill="#2B1638"/>
+          <circle cx="128" cy="188" r="5" fill="#2B1638"/>
+        `
+      },
+      {
+        name: "Bé Thỏ Kuromi & My Melody",
+        svg: `
+          <!-- Mũ trùm tai thỏ hồng phấn -->
+          <path d="M74 68 C54 14, 86 6, 100 54" fill="#FF5C97" stroke="#2B1638" stroke-width="3.5"/>
+          <path d="M166 68 C186 14, 154 6, 140 54" fill="#FF5C97" stroke="#2B1638" stroke-width="3.5"/>
+          <ellipse cx="120" cy="108" rx="54" ry="46" fill="#FF5C97" stroke="#2B1638" stroke-width="3.5"/>
+          <ellipse cx="120" cy="114" rx="40" ry="34" fill="#FFFFFF" stroke="#2B1638" stroke-width="3.2"/>
+          <!-- Nơ tím lớn trên tai -->
+          <circle cx="152" cy="68" r="7" fill="#FFE066" stroke="#2B1638" stroke-width="2.8"/>
+          <!-- Mắt & Mũi hồng -->
+          <ellipse cx="102" cy="112" rx="5.5" ry="7.5" fill="#2B1638"/>
+          <ellipse cx="138" cy="112" rx="5.5" ry="7.5" fill="#2B1638"/>
+          <ellipse cx="120" cy="118" rx="4.5" ry="3" fill="#FF5C97"/>
+          <!-- Ôm trái tim kem lớn -->
+          <path d="M120 212 C120 212, 74 182, 74 156 C74 140, 92 132, 108 144 L120 156 L132 144 C148 132, 166 140, 166 156 C166 182, 120 212, 120 212 Z" fill="#FFE066" stroke="#2B1638" stroke-width="3.5"/>
+          <text x="120" y="178" text-anchor="middle" fill="#2B1638" font-family="Baloo 2, sans-serif" font-weight="800" font-size="15">LOVE YOU!</text>
+        `
+      }
+    ];
+
+    // Hình vẽ SVG cho 3 thẻ Sticker ở Chương 2
+    function getStickerSvg(type) {
+      if (type === 'crown') {
+        return `<svg width="52" height="52" viewBox="0 0 64 64" fill="none">
+          <path d="M10 46L16 20L32 34L48 20L54 46H10Z" fill="#FFE066" stroke="#2B1638" stroke-width="3.5" stroke-linejoin="round"/>
+          <circle cx="16" cy="15" r="4" fill="#FF5C97" stroke="#2B1638" stroke-width="2.5"/>
+          <circle cx="32" cy="12" r="5" fill="#9D4EDD" stroke="#2B1638" stroke-width="2.5"/>
+          <circle cx="48" cy="15" r="4" fill="#FF5C97" stroke="#2B1638" stroke-width="2.5"/>
+        </svg>`;
+      }
+      if (type === 'boba') {
+        return `<svg width="52" height="52" viewBox="0 0 64 64" fill="none">
+          <rect x="18" y="22" width="28" height="34" rx="6" fill="#EAD6FF" stroke="#2B1638" stroke-width="3.2"/>
+          <rect x="14" y="18" width="36" height="6" rx="3" fill="#FF5C97" stroke="#2B1638" stroke-width="3"/>
+          <line x1="32" y1="8" x2="32" y2="20" stroke="#2B1638" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="25" cy="48" r="3" fill="#2B1638"/><circle cx="32" cy="50" r="3" fill="#2B1638"/><circle cx="39" cy="48" r="3" fill="#2B1638"/>
+        </svg>`;
+      }
+      return `<svg width="52" height="52" viewBox="0 0 64 64" fill="none">
+        <circle cx="32" cy="28" r="18" fill="#C77DFF" stroke="#2B1638" stroke-width="3.2"/>
+        <circle cx="26" cy="22" r="5" fill="#FFFFFF" opacity="0.8"/>
+        <rect x="20" y="46" width="24" height="8" rx="4" fill="#FFE066" stroke="#2B1638" stroke-width="3"/>
+      </svg>`;
+    }
+
+    let currentChibiIdx = 0;
+
+    function renderChibiScene(idx) {
+      const scene = CHIBI_SCENES[idx % CHIBI_SCENES.length];
+      document.getElementById('chibiSvgScene').innerHTML = scene.svg;
+      document.getElementById('chibiThemeName').textContent = scene.name;
+    }
+
+    // 2. KHỞI TẠO DỮ LIỆU TỪ BIRTHDAY_CONFIG
+    function initPageContent() {
+      const c = BIRTHDAY_CONFIG;
+      document.getElementById('introHerName').textContent = c.herName;
+      document.getElementById('coverHerName').textContent = c.herName;
+      document.getElementById('coverHerTitle').textContent = c.herTitle;
+      document.getElementById('coverIssueText').textContent = c.issueNumber;
+      document.getElementById('coverLeftText').textContent = c.coverHeadlineLeft;
+      document.getElementById('coverRightText').textContent = c.coverHeadlineRight;
+      document.getElementById('coverQuoteText').textContent = c.coverMainQuote;
+      document.getElementById('barcodeDateText').textContent = c.birthdayDate;
+      document.getElementById('cakeAgeText').textContent = c.ageBadge;
+
+      document.getElementById('receiptName').textContent = c.herName;
+      document.getElementById('receiptDate').textContent = c.birthdayDate;
+      document.getElementById('receiptOwner').textContent = c.yourName;
+
+      document.getElementById('letterGreeting').textContent = c.loveLetterGreeting;
+      document.getElementById('letterBody').textContent = c.loveLetterBody;
+      document.getElementById('letterSign').textContent = "— " + c.yourName;
+
+      if (c.roseCardTitle) document.getElementById('roseTitleText').textContent = c.roseCardTitle;
+      if (c.roseCardMeaning) document.getElementById('roseMeaningText').textContent = c.roseCardMeaning;
+      if (c.milkFlowerTitle) document.getElementById('milkFlowerTitleText').textContent = c.milkFlowerTitle;
+      if (c.milkFlowerMeaning) document.getElementById('milkFlowerMeaningText').textContent = c.milkFlowerMeaning;
+
+      renderChibiScene(0);
+
+      if (c.coverPhotoUrl && c.coverPhotoUrl.trim() !== "") {
+        const img = document.getElementById('coverPhotoImg');
+        img.src = c.coverPhotoUrl;
+        img.classList.add('visible');
+        document.getElementById('chibiCoverWrap').style.display = 'none';
+      }
+
+      // Render 3 thẻ Sticker lật ở Chương 2
+      const grid = document.getElementById('stickerGrid');
+      grid.innerHTML = '';
+      c.flipCards.forEach((item, i) => {
+        const photo = c.memoryPhotos && c.memoryPhotos[i] ? c.memoryPhotos[i] : '';
+        const visual = photo ? `<img src="${photo}" alt="Kỷ niệm ${i + 1}" />` : getStickerSvg(item.type);
+        const card = document.createElement('div');
+        card.className = 'sticker-flip';
+        card.setAttribute('role', 'button');
+        card.setAttribute('tabindex', '0');
+        card.innerHTML = `
+          <div class="sticker-flip-inner">
+            <div class="sticker-face">
+              <div class="sticker-art-circle">${visual}</div>
+              <div class="sticker-card-title">${item.frontTitle}</div>
+              <span class="sticker-tap-pill">Chạm để lật thẻ</span>
+            </div>
+            <div class="sticker-back">
+              <div class="sticker-card-title" style="color:var(--pink-pop);">Bật Mí!</div>
+              <p style="font-size:13.5px; font-weight:700; line-height:1.45;">${item.backText}</p>
+            </div>
+          </div>
+        `;
+        const toggleFlip = () => {
+          card.classList.toggle('flipped');
+          playToonSfx('pop');
+        };
+        card.addEventListener('click', toggleFlip);
+        card.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            toggleFlip();
+          }
+        });
+        grid.appendChild(card);
+      });
+
+      // Render 4 Vé Đặc Quyền Blind Box ở Chương 3
+      const couponGrid = document.getElementById('couponGrid');
+      couponGrid.innerHTML = '';
+      c.blindBoxCards.forEach((ticket) => {
+        const el = document.createElement('div');
+        el.className = 'toon-coupon-card' + (ticket.isSecret ? ' secret-edition' : '');
+        el.innerHTML = `
+          <div>
+            <span class="coupon-rarity-tag">${ticket.rarity}</span>
+            <div class="coupon-title">${ticket.title}</div>
+            <p class="coupon-desc">${ticket.desc}</p>
+          </div>
+          <div class="coupon-Stub">
+            <span>${ticket.code}</span>
+            <span>CÓ HIỆU LỰC NGAY</span>
+          </div>
+        `;
+        couponGrid.appendChild(el);
+      });
+    }
+
+    // 3. HỆ THỐNG ÂM THANH HOẠT HÌNH (WEB AUDIO API)
+    let audioCtx = null;
+    let bgMusicTimer = null;
+    let musicOn = false;
+
+    function initAudio() {
+      if (!audioCtx) {
+        const AC = window.AudioContext || window.webkitAudioContext;
+        if (AC) audioCtx = new AC();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
+    }
+
+    function playTone(freq, dur = 0.25, type = 'triangle', vol = 0.08, delay = 0) {
+      if (!audioCtx) return;
+      const t = audioCtx.currentTime + delay;
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = type;
+      osc.frequency.setValueAtTime(freq, t);
+      gain.gain.setValueAtTime(0.0001, t);
+      gain.gain.exponentialRampToValueAtTime(vol, t + 0.015);
+      gain.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(t);
+      osc.stop(t + dur + 0.02);
+    }
+
+    function playToonSfx(type) {
+      initAudio();
+      if (!audioCtx) return;
+      if (type === 'pop') {
+        playTone(520, 0.1, 'sine', 0.09, 0);
+        playTone(780, 0.14, 'triangle', 0.08, 0.05);
+      } else if (type === 'beep') {
+        playTone(1650, 0.1, 'square', 0.05, 0);
+        playTone(2100, 0.14, 'square', 0.05, 0.09);
+      } else if (type === 'shake') {
+        playTone(300, 0.08, 'triangle', 0.09, 0);
+        playTone(450, 0.08, 'triangle', 0.09, 0.08);
+        playTone(360, 0.1, 'triangle', 0.09, 0.16);
+      } else if (type === 'fanfare') {
+        [523.25, 659.25, 783.99, 1046.5].forEach((f, idx) => {
+          playTone(f, 0.45, 'triangle', 0.09, idx * 0.08);
+        });
+      } else if (type === 'birthday') {
+        const song = [
+          [392, 0.28], [392, 0.28], [440, 0.45], [392, 0.45], [523.25, 0.45], [493.88, 0.8],
+          [392, 0.28], [392, 0.28], [440, 0.45], [392, 0.45], [587.33, 0.45], [523.25, 0.85]
+        ];
+        let offset = 0;
+        song.forEach(([f, d]) => {
+          playTone(f, d, 'triangle', 0.11, offset);
+          offset += d * 0.88;
+        });
+      }
+    }
+
+    function toggleMusic() {
+      initAudio();
+      const btn = document.getElementById('musicBtn');
+      if (musicOn) {
+        clearInterval(bgMusicTimer);
+        musicOn = false;
+        btn.style.background = '#EAD6FF';
+        return;
+      }
+      musicOn = true;
+      btn.style.background = '#FFE066';
+      const loopNotes = [523.25, 659.25, 783.99, 880, 783.99, 659.25];
+      let step = 0;
+      const tick = () => {
+        if (!musicOn) return;
+        playTone(loopNotes[step % loopNotes.length], 0.55, 'sine', 0.035, 0);
+        step++;
+      };
+      tick();
+      bgMusicTimer = setInterval(tick, 600);
+    }
+
+    document.getElementById('musicBtn').addEventListener('click', toggleMusic);
+
+    // Mở cuốn truyện từ màn hình Intro
+    document.getElementById('openBookBtn').addEventListener('click', () => {
+      initAudio();
+      playToonSfx('fanfare');
+      if (!musicOn) toggleMusic();
+      document.getElementById('introOverlay').classList.add('closed');
+      spawnConfetti(55);
+    });
+
+    function jumpChapter(id, btn) {
+      document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+      if (btn) btn.classList.add('active');
+      const el = document.getElementById(id);
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // 4. SỰ KIỆN CHƯƠNG 1: ĐỔI NHÂN VẬT HOẠT HÌNH & DÁN ẢNH THẬT
+    document.getElementById('switchChibiBtn').addEventListener('click', () => {
+      document.getElementById('coverPhotoImg').classList.remove('visible');
+      document.getElementById('chibiCoverWrap').style.display = 'flex';
+      currentChibiIdx = (currentChibiIdx + 1) % CHIBI_SCENES.length;
+      renderChibiScene(currentChibiIdx);
+      playToonSfx('pop');
+    });
+
+    document.getElementById('pickPhotoBtn').addEventListener('click', () => {
+      document.getElementById('photoInput').click();
+    });
+
+    document.getElementById('photoInput').addEventListener('change', (e) => {
+      const f = e.target.files[0];
+      if (!f) return;
+      const reader = new FileReader();
+      reader.onload = (ev) => {
+        const img = document.getElementById('coverPhotoImg');
+        img.src = ev.target.result;
+        img.classList.add('visible');
+        document.getElementById('chibiCoverWrap').style.display = 'none';
+        playToonSfx('fanfare');
+        spawnConfetti(35);
+      };
+      reader.readAsDataURL(f);
+    });
+
+    // Quét mã vạch siêu thị
+    document.getElementById('barcodeBtn').addEventListener('click', () => {
+      playToonSfx('beep');
+      document.getElementById('receiptModal').classList.add('open');
+    });
+
+    function closeReceipt() {
+      document.getElementById('receiptModal').classList.remove('open');
+    }
+
+    // 5. SỰ KIỆN CHƯƠNG 2: BẤM ĐO LẠI CHỈ SỐ
+    let measureClicks = 0;
+    const funnyLabMsgs = [
+      "BÙM! Bình đo nổ tung vì độ tươi tắn và năng lượng tích cực vượt ngưỡng 9,999%!",
+      "CẢNH BÁO: Càng bấm đo lại thì chỉ số May Mắn của Ngân Hà càng tăng gấp đôi!",
+      "KẾT LUẬN CỦA PHÒNG THÍ NGHIỆM: Ngân Hà luôn là số 1, không cần bàn cãi!"
+    ];
+
+    document.getElementById('recalcBtn').addEventListener('click', () => {
+      playToonSfx('beep');
+      measureClicks++;
+      const banner = document.getElementById('recalcBanner');
+      banner.textContent = funnyLabMsgs[(measureClicks - 1) % funnyLabMsgs.length];
+      banner.classList.remove('show');
+      void banner.offsetWidth;
+      banner.classList.add('show');
+      document.getElementById('statVal1').textContent = (999 + measureClicks * 1000) + "%";
+      document.getElementById('statVal2').textContent = (100 + measureClicks * 100) + "% Bất Bại";
+      spawnConfetti(25);
+    });
+
+    // 6. SỰ KIỆN CHƯƠNG 3: LẮC HỘP BLIND BOX & KÉO XÉ HỘP
+    const toyBoxStage = document.getElementById('toyBoxStage');
+    const toyBoxVisual = document.getElementById('toyBoxVisual');
+    const boxSpeechText = document.getElementById('boxSpeechText');
+    const zipperSlider = document.getElementById('zipperSlider');
+    const zipperPercent = document.getElementById('zipperPercent');
+    let shakeCount = 0;
+    let boxOpened = false;
+
+    const shakeLines = [
+      "LỌC CỌC! Nghe tiếng bên trong nặng trịch những sự chiều chuộng!",
+      "RỘP RỘP! Thoang thoảng mùi trà sữa full topping và đồ ăn ngon!",
+      "BÁO ĐỘNG: Hai chiếc tai thỏ đang nhúc nhích! Kéo thanh trượt bên dưới để xé hộp ngay!"
+    ];
+
+    function triggerBoxShake() {
+      if (boxOpened) return;
+      playToonSfx('shake');
+      toyBoxVisual.classList.remove('wobble');
+      void toyBoxVisual.offsetWidth;
+      toyBoxVisual.classList.add('wobble');
+      boxSpeechText.textContent = shakeLines[shakeCount % shakeLines.length];
+      shakeCount++;
+    }
+
+    toyBoxStage.addEventListener('click', triggerBoxShake);
+    toyBoxStage.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        triggerBoxShake();
+      }
+    });
+
+    zipperSlider.addEventListener('input', (e) => {
+      if (boxOpened) return;
+      const v = parseInt(e.target.value, 10);
+      zipperPercent.textContent = v + '%';
+      if (v % 20 === 0) playTone(420 + v * 4, 0.05, 'sawtooth', 0.03, 0);
+      if (v >= 92) {
+        unboxToyBlindBox();
+      }
+    });
+
+    function unboxToyBlindBox() {
+      if (boxOpened) return;
+      boxOpened = true;
+      zipperSlider.value = 100;
+      document.getElementById('boxLidGroup').style.transform = 'translateY(-42px) rotate(-12deg)';
+      document.getElementById('boxLidGroup').style.opacity = '0';
+      document.getElementById('boxQuestionMark').textContent = '★';
+      boxSpeechText.textContent = 'TADA! Chúc mừng em đã khui trúng trọn bộ 4 Vé Đặc Quyền & Vé SECRET!';
+      document.getElementById('zipperBox').style.display = 'none';
+      document.getElementById('couponGrid').classList.add('open');
+      playToonSfx('fanfare');
+      spawnConfetti(80);
+    }
+
+    // 7. SỰ KIỆN CHƯƠNG 4: THỔI TẮT "BÉ LỬA NHỎ" QUA MICROPHONE
+    let micStream = null;
+    let analyser = null;
+    let micLoopId = null;
+    let blowEnergy = 0;
+    let candleExtinguished = false;
+    let holdTimer = null;
+
+    const livingFlameGroup = document.getElementById('livingFlameGroup');
+    const flameGlowCircle = document.getElementById('flameGlowCircle');
+    const cartoonSmokeGroup = document.getElementById('cartoonSmokeGroup');
+    const windBarFill = document.getElementById('windBarFill');
+    const micPromptText = document.getElementById('micPromptText');
+    const notebookLetter = document.getElementById('notebookLetter');
+
+    function applyWindToFlame(power) {
+      if (candleExtinguished) return;
+      const tilt = (Math.random() - 0.3) * 32 * power + power * 26;
+      const squash = Math.max(0.4, 1 - power * 0.4);
+      livingFlameGroup.style.transform = `rotate(${tilt}deg) scaleY(${squash})`;
+      windBarFill.style.width = Math.min(100, Math.round(blowEnergy)) + '%';
+
+      if (blowEnergy >= 100) {
+        blowOutCartoonCandle();
+      }
+    }
+
+    function blowOutCartoonCandle() {
+      if (candleExtinguished) return;
+      candleExtinguished = true;
+      livingFlameGroup.style.opacity = '0';
+      livingFlameGroup.style.transform = 'scale(0.1)';
+      flameGlowCircle.style.opacity = '0';
+      cartoonSmokeGroup.style.opacity = '1';
+      cartoonSmokeGroup.style.transform = 'translateY(-18px)';
+      windBarFill.style.width = '100%';
+      micPromptText.textContent = 'PHÙUU~! Bé Lửa Nhỏ đã đi ngủ! Mọi điều ước của em đều sẽ thành hiện thực!';
+
+      if (micLoopId) cancelAnimationFrame(micLoopId);
+      if (micStream) {
+        micStream.getTracks().forEach(t => t.stop());
+        micStream = null;
+      }
+
+      playToonSfx('birthday');
+      spawnConfetti(120);
+      setTimeout(() => {
+        notebookLetter.classList.add('visible');
+        notebookLetter.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 550);
+    }
+
+    document.getElementById('relightBtn').addEventListener('click', () => {
+      candleExtinguished = false;
+      blowEnergy = 0;
+      livingFlameGroup.style.opacity = '1';
+      livingFlameGroup.style.transform = 'rotate(0deg) scaleY(1)';
+      flameGlowCircle.style.opacity = '0.45';
+      cartoonSmokeGroup.style.opacity = '0';
+      cartoonSmokeGroup.style.transform = 'translateY(0)';
+      windBarFill.style.width = '0%';
+      micPromptText.textContent = 'Bé Lửa Nhỏ đã thức dậy! Em hãy ước thêm một điều nữa nhé!';
+      playToonSfx('pop');
+    });
+
+    document.getElementById('enableMicBtn').addEventListener('click', async () => {
+      if (candleExtinguished) return;
+      initAudio();
+      try {
+        micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        const src = audioCtx.createMediaStreamSource(micStream);
+        analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 256;
+        src.connect(analyser);
+        const buf = new Uint8Array(analyser.frequencyBinCount);
+
+        micPromptText.textContent = 'Mic đã bật! Em hãy thổi phù một hơi thật mạnh vào điện thoại nhé...';
+
+        function checkMicWind() {
+          if (candleExtinguished || !analyser) return;
+          analyser.getByteFrequencyData(buf);
+          let sum = 0;
+          for (let i = 0; i < 30; i++) sum += buf[i];
+          const avg = sum / 30;
+
+          if (avg > 40) {
+            const p = Math.min(1, (avg - 40) / 65);
+            blowEnergy += p * 4.4;
+            applyWindToFlame(p);
+          } else {
+            blowEnergy = Math.max(0, blowEnergy - 0.5);
+            livingFlameGroup.style.transform = 'rotate(0deg) scaleY(1)';
+            windBarFill.style.width = Math.round(blowEnergy) + '%';
+          }
+          micLoopId = requestAnimationFrame(checkMicWind);
+        }
+        checkMicWind();
+      } catch (err) {
+        micPromptText.textContent = 'Trình duyệt chưa cấp quyền Mic — em hãy nhấn giữ nút "Nhấn Giữ Để Thổi" ngay bên dưới nhé!';
+      }
+    });
+
+    // Nhấn giữ để thổi (dự phòng mượt mà)
+    const holdToBlowBtn = document.getElementById('holdToBlowBtn');
+    const cakeTouchArea = document.getElementById('cakeTouchArea');
+
+    function beginHoldBlow(e) {
+      if (e && e.cancelable) e.preventDefault();
+      if (candleExtinguished) return;
+      initAudio();
+      micPromptText.textContent = 'Phùuu... giữ thêm một chút xíu nữa là Bé Lửa Nhỏ tắt ngay!';
+      clearInterval(holdTimer);
+      holdTimer = setInterval(() => {
+        blowEnergy += 5.5;
+        applyWindToFlame(0.85);
+      }, 50);
+    }
+
+    function endHoldBlow() {
+      clearInterval(holdTimer);
+      if (!candleExtinguished) {
+        livingFlameGroup.style.transform = 'rotate(0deg) scaleY(1)';
+      }
+    }
+
+    ['mousedown', 'touchstart'].forEach(ev => {
+      holdToBlowBtn.addEventListener(ev, beginHoldBlow, { passive: false });
+      cakeTouchArea.addEventListener(ev, beginHoldBlow, { passive: false });
+    });
+    ['mouseup', 'mouseleave', 'touchend'].forEach(ev => {
+      holdToBlowBtn.addEventListener(ev, endHoldBlow);
+      cakeTouchArea.addEventListener(ev, endHoldBlow);
+    });
+
+    // 8. SỰ KIỆN CARD HOA: CẮM THÊM HOA HỒNG & HOA SỮA + MƯA CÁNH HOA MÙA THU
+    let flowerCount = 12;
+    const extraBloomsGroup = document.getElementById('extraBloomsGroup');
+    const flowerCountBadge = document.getElementById('flowerCountBadge');
+    const scentBubbleText = document.getElementById('scentBubbleText');
+
+    const scentMessages = [
+      "Mùi hoa sữa tháng 10 dịu ngọt thoang thoảng quanh đây...",
+      "Một đóa hoa hồng phấn vừa nở thêm dành tặng Ngân Hà!",
+      "Chùm hoa sữa trắng kem rung rinh trong gió thu Hà Nội!",
+      "Bó hoa ngày càng rực rỡ giống như nụ cười của Ngân Hà vậy!"
+    ];
+
+    // Vị trí tọa độ hợp lý trong bó hoa để cắm thêm hoa mới
+    const bloomSpots = [
+      { x: 140, y: 66 }, { x: 112, y: 82 }, { x: 168, y: 82 },
+      { x: 76, y: 124 }, { x: 204, y: 124 }, { x: 124, y: 146 },
+      { x: 156, y: 146 }, { x: 94, y: 68 }, { x: 186, y: 68 },
+      { x: 140, y: 136 }, { x: 88, y: 148 }, { x: 192, y: 148 }
+    ];
+
+    function addNewBloomToBouquet() {
+      playToonSfx('pop');
+      const spot = bloomSpots[(flowerCount - 12) % bloomSpots.length];
+      const jitterX = spot.x + (Math.random() - 0.5) * 14;
+      const jitterY = spot.y + (Math.random() - 0.5) * 12;
+      const isRose = flowerCount % 2 === 0;
+
+      const g = document.createElementNS('http://www.w3.org/2000/svg', 'g');
+      g.setAttribute('class', 'dynamic-bloom');
+
+      if (isRose) {
+        const fillMain = flowerCount % 4 === 0 ? '#C77DFF' : '#FF5C97';
+        const fillInner = flowerCount % 4 === 0 ? '#EAD6FF' : '#FFD1E3';
+        g.innerHTML = `
+          <g transform="translate(${jitterX}, ${jitterY})">
+            <circle cx="0" cy="0" r="18" fill="${fillMain}" stroke="#2B1638" stroke-width="2.8"/>
+            <path d="M-11 -3 C-8 -13, 10 -13, 11 -1 C12 10, -10 11, -8 1 C-7 -5, 5 -5, 5 1" fill="${fillInner}" stroke="#2B1638" stroke-width="2.2" stroke-linecap="round"/>
+          </g>
+        `;
+      } else {
+        // Chùm Hoa Sữa 5 cánh trắng kem
+        g.innerHTML = `
+          <g transform="translate(${jitterX}, ${jitterY})">
+            <circle cx="0" cy="-7" r="5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2.2"/>
+            <circle cx="7" cy="-2" r="5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2.2"/>
+            <circle cx="4.5" cy="6" r="5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2.2"/>
+            <circle cx="-4.5" cy="6" r="5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2.2"/>
+            <circle cx="-7" cy="-2" r="5" fill="#FFFDF7" stroke="#2B1638" stroke-width="2.2"/>
+            <circle cx="0" cy="0" r="3.2" fill="#FFE066" stroke="#2B1638" stroke-width="1.8"/>
+          </g>
+        `;
+      }
+
+      extraBloomsGroup.appendChild(g);
+      flowerCount++;
+      flowerCountBadge.textContent = `${flowerCount} bông & chùm hoa`;
+      scentBubbleText.textContent = scentMessages[flowerCount % scentMessages.length];
+      spawnFloralPetals(16);
+    }
+
+    document.getElementById('addFlowerBtn').addEventListener('click', addNewBloomToBouquet);
+    document.getElementById('bouquetStage').addEventListener('click', addNewBloomToBouquet);
+    document.getElementById('bouquetStage').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        addNewBloomToBouquet();
+      }
+    });
+
+    document.getElementById('petalRainBtn').addEventListener('click', () => {
+      playToonSfx('fanfare');
+      scentBubbleText.textContent = 'Cơn mưa cánh Hoa Hồng & Hoa Sữa mùa thu đang bay khắp bầu trời!';
+      spawnFloralPetals(52);
+    });
+
+    // 9. HIỆU ỨNG PHÁO GIẤY & CÁNH HOA HỒNG / HOA SỮA BAY TRÊN CANVAS
+    const confettiCanvas = document.getElementById('confettiCanvas');
+    const cCtx = confettiCanvas.getContext('2d');
+    let confettiList = [];
+
+    function resizeCanvas() {
+      confettiCanvas.width = window.innerWidth;
+      confettiCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    function spawnConfetti(count = 55) {
+      const palette = ['#FF5C97', '#9D4EDD', '#FFE066', '#A8F0DF', '#FFD1E3', '#C77DFF'];
+      for (let i = 0; i < count; i++) {
+        confettiList.push({
+          kind: i % 3 === 0 ? 'milkflower' : (i % 2 === 0 ? 'rosepetal' : 'rect'),
+          x: window.innerWidth / 2 + (Math.random() - 0.5) * 140,
+          y: window.innerHeight * 0.5,
+          vx: (Math.random() - 0.5) * 14,
+          vy: -Math.random() * 14 - 5,
+          size: Math.random() * 10 + 7,
+          color: palette[Math.floor(Math.random() * palette.length)],
+          rot: Math.random() * Math.PI * 2,
+          vRot: (Math.random() - 0.5) * 0.14,
+          life: 1
+        });
+      }
+    }
+
+    function spawnFloralPetals(count = 36) {
+      for (let i = 0; i < count; i++) {
+        const isMilkFlower = i % 2 === 0;
+        confettiList.push({
+          kind: isMilkFlower ? 'milkflower' : 'rosepetal',
+          x: Math.random() * window.innerWidth,
+          y: -20 - Math.random() * 120,
+          vx: (Math.random() - 0.5) * 3.2,
+          vy: Math.random() * 2.2 + 1.4,
+          size: isMilkFlower ? (Math.random() * 4 + 7) : (Math.random() * 6 + 9),
+          color: Math.random() > 0.4 ? '#FF5C97' : '#C77DFF',
+          rot: Math.random() * Math.PI * 2,
+          vRot: (Math.random() - 0.5) * 0.06,
+          life: 1.25
+        });
+      }
+    }
+
+    function loopConfetti() {
+      cCtx.clearRect(0, 0, confettiCanvas.width, confettiCanvas.height);
+      for (let i = confettiList.length - 1; i >= 0; i--) {
+        const p = confettiList[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.kind === 'rect') {
+          p.vy += 0.35;
+          p.life -= 0.009;
+        } else {
+          // Cánh hoa hồng & Hoa sữa rơi đung đưa nhẹ theo gió thu
+          p.x += Math.sin(p.y * 0.025) * 0.9;
+          p.life -= 0.0045;
+        }
+        p.rot += p.vRot;
+
+        if (p.life <= 0 || p.y > confettiCanvas.height + 40) {
+          confettiList.splice(i, 1);
+          continue;
+        }
+
+        cCtx.save();
+        cCtx.translate(p.x, p.y);
+        cCtx.rotate(p.rot);
+        cCtx.globalAlpha = Math.max(0, Math.min(1, p.life));
+        cCtx.strokeStyle = '#2B1638';
+        cCtx.lineWidth = 1.8;
+
+        if (p.kind === 'milkflower') {
+          // Vẽ bông Hoa Sữa 5 cánh trắng kem nhụy vàng
+          cCtx.fillStyle = '#FFFDF7';
+          for (let k = 0; k < 5; k++) {
+            const ang = (k * Math.PI * 2) / 5;
+            const px = Math.cos(ang) * (p.size * 0.65);
+            const py = Math.sin(ang) * (p.size * 0.65);
+            cCtx.beginPath();
+            cCtx.arc(px, py, p.size * 0.42, 0, Math.PI * 2);
+            cCtx.fill();
+            cCtx.stroke();
+          }
+          cCtx.fillStyle = '#FFE066';
+          cCtx.beginPath();
+          cCtx.arc(0, 0, p.size * 0.28, 0, Math.PI * 2);
+          cCtx.fill();
+          cCtx.stroke();
+        } else if (p.kind === 'rosepetal') {
+          // Vẽ cánh Hoa Hồng Phấn / Tím
+          cCtx.fillStyle = p.color;
+          cCtx.beginPath();
+          cCtx.ellipse(0, 0, p.size * 0.75, p.size * 0.48, 0, 0, Math.PI * 2);
+          cCtx.fill();
+          cCtx.stroke();
+        } else {
+          cCtx.fillStyle = p.color;
+          cCtx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.7);
+          cCtx.strokeRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.7);
+        }
+        cCtx.restore();
+      }
+      requestAnimationFrame(loopConfetti);
+    }
+
+    initPageContent();
+    loopConfetti();
+  </script>
+</body>
+</html>

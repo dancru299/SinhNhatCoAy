@@ -1,0 +1,569 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Thiệp.exe</title>
+<meta name="description" content="Thiệp 20/10 chạy trên hệ điều hành ThiệpOS. Cảnh báo: có thể gây cười.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Bạn có 1 tệp đính kèm: Thiệp.exe 💾">
+<meta property="og:description" content="ThiệpOS 20.10 · cài đặt hạnh phúc, quét virus buồn phiền, và một nút Không biết bỏ chạy.">
+<meta property="og:image" content="https://tuanjhg.github.io/thiep-20-10/og-exe.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#2A8C8C">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💾</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=VT323&family=Be+Vietnam+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --desk:#2A8C8C; --silver:#C3C3C3; --dark:#808080; --darker:#0A0A0A; --light:#FFFFFF; --hilite:#DFDFDF;
+  --title1:#B4246C; --title2:#F49AC1; --navy:#000080; --tip:#FFFFE1; --pink:#F49AC1;
+  --px:'VT323',ui-monospace,monospace; --ui:'Be Vietnam Pro',Tahoma,system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0}
+html,body{height:100%}
+body{overflow:hidden;background:var(--desk);font-family:var(--px);font-size:20px;color:#000;-webkit-tap-highlight-color:transparent;-webkit-font-smoothing:none;user-select:none;-webkit-user-select:none}
+button{font:inherit;color:inherit}
+[hidden]{display:none!important}
+.bevel{box-shadow:inset -1px -1px var(--darker),inset 1px 1px var(--light),inset -2px -2px var(--dark),inset 2px 2px var(--hilite)}
+.sunken{box-shadow:inset -1px -1px var(--light),inset 1px 1px var(--dark),inset -2px -2px var(--hilite),inset 2px 2px var(--darker)}
+
+/* desktop */
+#desk{position:fixed;inset:0 0 44px 0;overflow:hidden;
+  background:radial-gradient(circle at 80% 15%,rgba(255,255,255,.18),transparent 30%),
+             repeating-conic-gradient(rgba(0,0,0,.035) 0 25%,transparent 0 50%) 0 0/4px 4px,
+             linear-gradient(160deg,#2F9696,#257C7C)}
+.watermark{position:absolute;right:4vw;bottom:2vh;font:clamp(90px,22vw,260px)/1 var(--px);color:rgba(255,255,255,.13);pointer-events:none;text-align:right}
+.watermark small{display:block;font-size:.2em;letter-spacing:.1em}
+.cloud{position:absolute;width:120px;height:36px;background:rgba(255,255,255,.55);box-shadow:24px -16px 0 -4px rgba(255,255,255,.55),56px -8px 0 -2px rgba(255,255,255,.55);image-rendering:pixelated;animation:float 60s linear infinite}
+@keyframes float{from{transform:translateX(-200px)}to{transform:translateX(110vw)}}
+.icons{position:absolute;left:8px;top:10px;display:grid;grid-auto-flow:row;gap:6px;z-index:1}
+.icon{width:92px;padding:6px 4px;border:1px dotted transparent;background:none;cursor:pointer;display:grid;justify-items:center;gap:2px;text-align:center}
+.icon .ic{font-size:34px;line-height:1;filter:drop-shadow(2px 2px 0 rgba(0,0,0,.35))}
+.icon .lb{font:18px/1 var(--px);color:#fff;text-shadow:1px 1px 0 #000;padding:2px 3px}
+.icon:focus-visible,.icon.sel{border-color:#fff}
+.icon.sel .lb,.icon:focus-visible .lb{background:var(--navy)}
+
+/* windows */
+.win{position:absolute;background:var(--silver);padding:3px;min-width:220px;max-width:calc(100vw - 12px);z-index:10}
+.win.pop{animation:pop .22s steps(4) both}
+.win.closing{animation:pop .16s steps(3) reverse both}
+@keyframes pop{from{transform:scale(.3);opacity:0}}
+.tb{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:2px 3px 2px 6px;background:linear-gradient(90deg,var(--title1),var(--title2));color:#fff;cursor:grab;touch-action:none}
+.win.blur .tb{background:linear-gradient(90deg,#7B7B7B,#B5B5B5)}
+.ti{font:20px/1.1 var(--px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tbb{display:flex;gap:2px;flex:none}
+.tbtn{width:22px;height:20px;border:0;background:var(--silver);font:16px/1 var(--px);display:grid;place-items:center;cursor:pointer;padding:0;color:#000}
+.wb{padding:12px}
+.btn{min-width:84px;padding:6px 14px;border:0;background:var(--silver);cursor:pointer;font:20px/1 var(--px);color:#000}
+.btn:active,.tbtn:active,.btn.on{box-shadow:inset -1px -1px var(--light),inset 1px 1px var(--darker),inset -2px -2px var(--hilite),inset 2px 2px var(--dark)}
+.btn:focus-visible{outline:1px dotted #000;outline-offset:-5px}
+.btn:disabled{color:var(--dark);text-shadow:1px 1px 0 #fff;cursor:not-allowed}
+.row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:14px;position:relative}
+.msg{display:flex;gap:14px;align-items:flex-start;font-size:21px;line-height:1.15}
+.msg .big{font-size:40px;line-height:1}
+.prog{height:26px;padding:3px;margin-top:10px;background:#fff}
+.prog i{display:block;height:100%;width:0;background:repeating-linear-gradient(90deg,var(--title1) 0 14px,transparent 14px 17px)}
+.status{font-size:19px;color:#333;min-height:1.2em;margin-top:8px}
+.paper{background:#fff;padding:10px 12px;font:22px/1.2 var(--px);min-height:150px;max-height:46vh;overflow:auto;white-space:pre-wrap;user-select:text;-webkit-user-select:text}
+.paper .cur{display:inline-block;width:.55em;height:1em;background:#000;vertical-align:-2px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.menubar{display:flex;gap:14px;font-size:19px;padding:0 4px 6px}
+.menubar u{text-decoration:underline}
+#bq{display:block;width:100%;image-rendering:pixelated;background:#fff}
+.list{background:#fff;padding:8px 10px;font-size:20px;line-height:1.3}
+.list li{list-style:none}
+.runner{position:relative}
+.yes-big{transition:transform .2s steps(3)}
+
+/* taskbar */
+#bar{position:fixed;left:0;right:0;bottom:0;height:44px;padding:4px;background:var(--silver);display:flex;gap:4px;align-items:center;z-index:900;box-shadow:inset 0 1px var(--light),inset 0 2px var(--hilite)}
+#start{height:34px;padding:0 10px;border:0;background:var(--silver);font:22px/1 var(--px);font-weight:700;display:flex;align-items:center;gap:6px;cursor:pointer;flex:none}
+#tasks{flex:1;display:flex;gap:4px;overflow:hidden}
+.task{height:34px;min-width:0;max-width:170px;flex:1 1 0;padding:0 8px;border:0;background:var(--silver);font:18px/1 var(--px);text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+.tray{height:34px;padding:0 10px;display:flex;align-items:center;gap:8px;font:19px/1 var(--px);flex:none}
+.tray button{border:0;background:none;cursor:pointer;font-size:18px;padding:0}
+#menu{position:fixed;left:4px;bottom:44px;z-index:950;background:var(--silver);padding:3px;display:flex;min-width:260px}
+#menu .side{width:30px;background:linear-gradient(0deg,var(--title1),var(--title2));color:#fff;writing-mode:vertical-rl;transform:rotate(180deg);font:24px/30px var(--px);padding:8px 0;text-align:left}
+#menu .side b{color:#FFE1F0}
+#menu ul{list-style:none;padding:2px;flex:1}
+#menu li button{width:100%;display:flex;align-items:center;gap:10px;padding:8px 10px;border:0;background:none;font:21px/1 var(--px);text-align:left;cursor:pointer;color:#000}
+#menu li button:hover,#menu li button:focus-visible{background:var(--navy);color:#fff;outline:0}
+#menu li button span{font-size:24px;width:30px;text-align:center}
+#menu hr{border:0;border-top:1px solid var(--dark);border-bottom:1px solid #fff;margin:3px 4px}
+#menu a{color:inherit;text-decoration:none;display:flex;align-items:center;gap:10px;padding:8px 10px;font:21px/1 var(--px)}
+#menu a:hover{background:var(--navy);color:#fff}
+#menu a span{font-size:24px;width:30px;text-align:center}
+#menu .sub{padding-left:10px;font-size:19px}
+
+/* cat assistant */
+#cat{position:fixed;right:10px;bottom:54px;z-index:800;display:flex;flex-direction:column;align-items:flex-end;gap:6px;max-width:min(300px,calc(100vw - 20px))}
+#cat .bubble{background:var(--tip);border:1px solid #000;padding:10px 12px;font:20px/1.15 var(--px);position:relative;box-shadow:3px 3px 0 rgba(0,0,0,.35)}
+#cat .bubble::after{content:"";position:absolute;right:26px;bottom:-9px;width:14px;height:14px;background:var(--tip);border-right:1px solid #000;border-bottom:1px solid #000;transform:rotate(45deg)}
+#cat .bubble .row{justify-content:flex-start;margin-top:10px;gap:6px}
+#cat .bubble .btn{min-width:0;font-size:18px;padding:5px 10px}
+#cat .face{width:66px;height:66px;font-size:46px;display:grid;place-items:center;background:var(--silver);cursor:pointer;animation:bob 1.6s steps(2) infinite;border:0}
+@keyframes bob{50%{transform:translateY(-4px)}}
+
+/* boot + shutdown */
+.screen{position:fixed;inset:0;z-index:2000;background:#000;color:#C8C8C8;font:clamp(18px,4.6vw,24px)/1.25 var(--px);padding:max(18px,env(safe-area-inset-top)) 18px;cursor:pointer}
+.screen pre{white-space:pre-wrap;font:inherit}
+.logo{position:absolute;inset:0;display:grid;place-items:center;align-content:center;gap:18px;text-align:center;background:linear-gradient(#000,#14001F)}
+.logo h1{font:clamp(54px,15vw,120px)/1 var(--px);color:#fff;letter-spacing:.02em}
+.logo h1 b{color:var(--pink)}
+.logo p{font-size:clamp(18px,4.6vw,24px);color:#bbb}
+.knight{width:min(260px,70vw);height:16px;border:2px solid #555;position:relative;overflow:hidden}
+.knight i{position:absolute;top:2px;bottom:2px;width:46px;background:repeating-linear-gradient(90deg,var(--pink) 0 10px,transparent 10px 14px);animation:kr 1.2s linear infinite}
+@keyframes kr{from{left:-50px}to{left:100%}}
+#shutdown{display:grid;place-items:center;text-align:center;color:#F7A23B;font-size:clamp(26px,7vw,46px);line-height:1.15;padding:24px}
+#shutdown small{display:block;color:#777;font-size:.5em;margin-top:24px}
+.toast{position:fixed;left:50%;top:14px;transform:translateX(-50%);z-index:3000;background:var(--tip);border:1px solid #000;padding:8px 12px;font:20px var(--px);box-shadow:3px 3px 0 rgba(0,0,0,.35);opacity:0;transition:opacity .2s steps(2);pointer-events:none;max-width:calc(100vw - 24px);text-align:center}
+.toast.on{opacity:1}
+label.fld{display:grid;gap:4px;font-size:20px;margin-top:8px}
+label.fld input,label.fld textarea{font:20px var(--px);padding:6px 8px;border:0;background:#fff;width:100%;user-select:text;-webkit-user-select:text}
+label.fld textarea{min-height:90px;resize:vertical}
+@media (max-width:600px){
+  .icons{grid-template-columns:repeat(4,1fr);left:4px;right:4px;top:6px}
+  .icon{width:auto}
+  .watermark{bottom:auto;top:40%}
+}
+@media (prefers-reduced-motion:reduce){.cloud,.knight i,#cat .face{animation:none}}
+body.og *{animation:none!important;transition:none!important}
+</style>
+</head>
+<body>
+<div id="desk">
+  <div class="cloud" style="top:12%;animation-delay:-12s"></div>
+  <div class="cloud" style="top:34%;animation-duration:80s;animation-delay:-50s;transform:scale(.7)"></div>
+  <div class="watermark" aria-hidden="true">20.10<small>THIỆPOS · PHIÊN BẢN DÀNH RIÊNG CHO <span data-to>BẠN</span></small></div>
+  <nav class="icons" aria-label="Biểu tượng trên màn hình">
+    <button class="icon" data-app="wish"><span class="ic">📄</span><span class="lb">Lời chúc.txt</span></button>
+    <button class="icon" data-app="flower"><span class="ic">💐</span><span class="lb">Bó hoa.exe</span></button>
+    <button class="icon" data-app="scan"><span class="ic">🛡️</span><span class="lb">Quét virus.exe</span></button>
+    <button class="icon" data-app="trash"><span class="ic">🗑️</span><span class="lb">Thùng rác</span></button>
+  </nav>
+</div>
+
+<div id="bar">
+  <button id="start" class="bevel" aria-expanded="false">🌸 Bắt đầu</button>
+  <div id="tasks"></div>
+  <div class="tray sunken"><button id="snd" aria-label="Bật/tắt âm thanh">🔊</button><span id="clock">20/10</span></div>
+</div>
+<div id="menu" class="bevel" hidden>
+  <div class="side"><b>Thiệp</b>OS 20.10</div>
+  <ul>
+    <li><button data-act="make"><span>✏️</span>Tạo thiệp của bạn</button></li>
+    <li><button data-act="story"><span>📸</span>Lưu ảnh Story</button></li>
+    <li><button data-act="cat"><span>🐱</span>Gọi Mèo trợ lý</button></li>
+    <hr>
+    <li><div class="sub">🎨 Kiểu thiệp khác:</div></li>
+    <li id="verLinks"></li>
+    <hr>
+    <li><button data-act="off"><span>⏻</span>Tắt máy…</button></li>
+  </ul>
+</div>
+
+<div id="cat" hidden>
+  <div class="bubble" id="catBubble"></div>
+  <button class="face bevel" id="catFace" aria-label="Mèo trợ lý">🐱</button>
+</div>
+
+<div class="screen" id="boot"><pre id="bootText"></pre><div class="logo" id="logo" hidden><h1>Thiệp<b>OS</b> 20.10</h1><div class="knight"><i></i></div><p>Đang khởi động yêu thương…</p></div></div>
+<div class="screen" id="shutdown" hidden><div>Giờ bạn có thể tắt máy<br>và ra ngoài tận hưởng 20/10 an toàn. 🌸<small>(chạm để khởi động lại)</small></div></div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(() => {
+'use strict';
+const $ = s => document.querySelector(s);
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const P = new URLSearchParams(location.search);
+const OG = P.has('og');
+const cut = (s, n) => (s || '').normalize('NFC').replace(/\s+/g, ' ').trim().slice(0, n);
+const DKEY = 'thiep2010:draft';
+function loadDraft() { try { return JSON.parse(sessionStorage.getItem(DKEY) || '{}') || {}; } catch (e) { return {}; } }
+// URL parameters are ignored on purpose: names live only on this device, never in a link
+const D0 = loadDraft();
+const S = { to: cut(D0.to, 40) || 'bạn', from: cut(D0.from, 40), m: cut(D0.m, 320), nick: cut(D0.nick, 30) };
+function saveDraft(s = S) { try { sessionStorage.setItem(DKEY, JSON.stringify({ to: s.to === 'bạn' ? '' : s.to, from: s.from, m: s.m, nick: s.nick })); } catch (e) {} }
+const sleep = ms => new Promise(r => setTimeout(r, RM ? Math.min(ms, 60) : ms));
+const esc = s => s.replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const pick = a => a[(Math.random() * a.length) | 0];
+const vibrate = p => { try { navigator.vibrate && navigator.vibrate(p); } catch (e) {} };
+const wishText = () => S.m || `Chúc ${S.to} một ngày 20/10 thật vui:\n- Luôn xinh đẹp (đã xác minh, không cần cập nhật)\n- Lương tăng đều như dung lượng ổ cứng\n- Deadline chạy chậm như mạng thời quay số\n- Buồn phiền thì Ctrl + Z ngay lập tức\n\nMãi là phiên bản tốt nhất của chính mình nhé! 💐`;
+let toastT;
+function toast(m) { const t = $('#toast'); t.textContent = m; t.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => t.classList.remove('on'), 2600); }
+document.querySelectorAll('[data-to]').forEach(e => e.textContent = S.to.toUpperCase());
+document.title = S.to !== 'bạn' ? `Thiệp.exe · Gửi ${S.to}` : 'Thiệp.exe';
+
+/* ---------- 8-bit sound ---------- */
+let AC = null, soundOn = true;
+function initAudio() { if (AC) { AC.state === 'suspended' && AC.resume(); return; } try { AC = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) {} }
+function beep(f, d = .09, when = 0, type = 'square', vol = .05, slide = 0) {
+  if (!AC || !soundOn) return;
+  const t = AC.currentTime + when, o = AC.createOscillator(), g = AC.createGain();
+  o.type = type; o.frequency.setValueAtTime(f, t); if (slide) o.frequency.exponentialRampToValueAtTime(slide, t + d);
+  g.gain.setValueAtTime(vol, t); g.gain.exponentialRampToValueAtTime(.0001, t + d);
+  o.connect(g); g.connect(AC.destination); o.start(t); o.stop(t + d + .02);
+}
+const SFX = {
+  click: () => beep(1200, .03, 0, 'square', .03),
+  open: () => { beep(660, .06); beep(990, .08, .06); },
+  close: () => { beep(700, .05); beep(440, .07, .05); },
+  error: () => { beep(880, .12, 0, 'square', .06); beep(587, .2, .13, 'square', .06); },
+  tada: () => [523, 659, 784, 1047, 1319].forEach((f, i) => beep(f, .14, i * .09, 'square', .045)),
+  boot: () => [392, 523, 659, 784, 1047, 784, 1047].forEach((f, i) => beep(f, .16, i * .12, 'triangle', .07)),
+  meow: () => { beep(700, .25, 0, 'triangle', .07, 1100); beep(1100, .3, .25, 'triangle', .06, 600); },
+  run: () => beep(300 + Math.random() * 900, .05, 0, 'square', .04, 1800),
+  crumple: () => { for (let i = 0; i < 8; i++) beep(150 + Math.random() * 200, .04, i * .03, 'sawtooth', .03); }
+};
+$('#snd').addEventListener('click', () => { soundOn = !soundOn; $('#snd').textContent = soundOn ? '🔊' : '🔇'; initAudio(); SFX.click(); });
+document.addEventListener('pointerdown', () => initAudio(), { once: false, capture: true });
+
+/* ---------- clock ---------- */
+function tickClock() { const d = new Date(); $('#clock').textContent = `${String(d.getHours()).padStart(2, '0')}:${String(d.getMinutes()).padStart(2, '0')} · 20/10`; }
+tickClock(); setInterval(tickClock, 15000);
+
+/* ---------- window manager ---------- */
+const desk = $('#desk'), tasks = $('#tasks');
+let zTop = 20, cascade = 0;
+const isPhone = () => innerWidth < 600;
+function focusWin(w) {
+  document.querySelectorAll('.win').forEach(x => x.classList.toggle('blur', x !== w));
+  w.style.zIndex = ++zTop;
+  document.querySelectorAll('.task').forEach(t => t.classList.toggle('on', t.dataset.win === w.id && !w.hidden));
+}
+function openWin({ id, title, icon = '🗔', html = '', width = 420, x, y, onClose, closable = true }) {
+  let w = document.getElementById(id);
+  if (w) { w.hidden = false; focusWin(w); return w; }
+  w = document.createElement('section'); w.className = 'win bevel pop'; w.id = id; w.setAttribute('role', 'dialog'); w.setAttribute('aria-label', title);
+  w.innerHTML = `<header class="tb"><span class="ti">${icon} ${esc(title)}</span><span class="tbb"><button class="tbtn bevel" data-min aria-label="Thu nhỏ">_</button>${closable ? '<button class="tbtn bevel" data-x aria-label="Đóng">✕</button>' : ''}</span></header><div class="wb">${html}</div>`;
+  const vw = innerWidth, vh = innerHeight - 44, ww = Math.min(width, vw - 12);
+  w.style.width = ww + 'px';
+  const cx = x ?? (isPhone() ? (vw - ww) / 2 : Math.max(8, (vw - ww) / 2 + (cascade % 5) * 26 - 50));
+  const cy = y ?? (isPhone() ? 112 + (cascade % 4) * 22 : Math.max(8, vh * .14 + (cascade % 5) * 26));
+  cascade++;
+  w.style.left = Math.max(4, Math.min(cx, vw - ww - 4)) + 'px'; w.style.top = Math.max(4, cy) + 'px';
+  desk.appendChild(w);
+  w._onClose = onClose;
+  w.addEventListener('pointerdown', () => focusWin(w));
+  w.querySelector('[data-x]')?.addEventListener('click', () => closeWin(w));
+  w.querySelector('[data-min]').addEventListener('click', () => { w.hidden = true; SFX.click(); focusWin(w); });
+  drag(w);
+  const t = document.createElement('button'); t.className = 'task bevel'; t.dataset.win = id; t.textContent = `${icon} ${title}`;
+  t.addEventListener('click', () => { if (w.hidden || w.style.zIndex < zTop) { w.hidden = false; focusWin(w); } else { w.hidden = true; focusWin(w); } SFX.click(); });
+  tasks.appendChild(t);
+  focusWin(w); SFX.open();
+  // keep tall windows on screen
+  requestAnimationFrame(() => { const r = w.getBoundingClientRect(); if (r.bottom > vh) w.style.top = Math.max(4, vh - r.height - 6) + 'px'; });
+  return w;
+}
+function closeWin(w, silent) {
+  if (!w || !w.isConnected) return;
+  w.classList.remove('pop'); w.classList.add('closing');
+  if (!silent) SFX.close();
+  setTimeout(() => { w.remove(); tasks.querySelector(`[data-win="${w.id}"]`)?.remove(); w._onClose && w._onClose(); }, 170);
+}
+function drag(w) {
+  const tb = w.querySelector('.tb');
+  tb.addEventListener('pointerdown', e => {
+    if (e.target.closest('button')) return;
+    const r = w.getBoundingClientRect(), ox = e.clientX - r.left, oy = e.clientY - r.top;
+    tb.setPointerCapture(e.pointerId); tb.style.cursor = 'grabbing';
+    const mv = ev => { w.style.left = Math.max(-r.width + 60, Math.min(innerWidth - 60, ev.clientX - ox)) + 'px'; w.style.top = Math.max(0, Math.min(innerHeight - 80, ev.clientY - oy)) + 'px'; };
+    const up = () => { tb.removeEventListener('pointermove', mv); tb.removeEventListener('pointerup', up); tb.style.cursor = ''; };
+    tb.addEventListener('pointermove', mv); tb.addEventListener('pointerup', up);
+  });
+}
+
+/* ---------- boot sequence ---------- */
+async function boot() {
+  const lines = [
+    'ThiệpBIOS v20.10  (C) 2026 Phòng Ban Yêu Thương',
+    '',
+    'Kiểm tra bộ nhớ ........ 640K yêu thương  OK',
+    'Kiểm tra bàn phím ...... phát hiện phím ❤',
+    `Phát hiện thiết bị ..... 1 người tuyệt vời (${S.to})`,
+    'Kiểm tra mức dễ thương . VƯỢT NGƯỠNG  (bỏ qua)',
+    '',
+    'Đang nạp ThiệpOS 20.10 ...'
+  ];
+  const pre = $('#bootText');
+  let skip = false; $('#boot').addEventListener('click', () => skip = true, { once: true });
+  for (const l of lines) { if (skip) break; pre.textContent += l + '\n'; await sleep(l ? 260 : 120); }
+  $('#logo').hidden = false; if (!skip) await sleep(1700);
+  $('#boot').hidden = true;
+  initAudio(); SFX.boot();
+  await sleep(500);
+  mailDialog();
+  setTimeout(() => cat(`Xin chào! Mình là Mèo trợ lý. Có vẻ như hôm nay là 20/10 và ${S.to} cần được chiều chuộng. Bạn có cần giúp… cười không?`, true), 2600);
+}
+
+/* ---------- 1. the gift dialog with the runaway "Không" ---------- */
+const NO_TEXTS = ['Không', 'Chắc chưa?', 'Nghĩ lại đi', 'Bấm Có đi mà 🥺', 'Hông chịu đâu', 'Bắt được tui hông?', '…'];
+function mailDialog() {
+  const from = S.from || 'một người bí ẩn';
+  const w = openWin({ id: 'mail', title: 'Thư mới (1)', icon: '📨', width: 400, closable: false, html:
+    `<div class="msg"><span class="big">💌</span><div>Bạn có 1 món quà từ <b>${esc(from)}</b>.<br>Bạn có muốn nhận không?</div></div>
+     <div class="row runner" style="min-height:96px;align-items:flex-start"><button class="btn bevel yes-big" id="yes">Có</button><button class="btn bevel" id="no">Không</button></div>` });
+  let tries = 0, yesScale = 1;
+  const no = w.querySelector('#no'), yes = w.querySelector('#yes'), zone = w.querySelector('.runner');
+  const run = e => {
+    if (e) e.preventDefault();
+    tries++; SFX.run(); vibrate(8);
+    if (tries >= NO_TEXTS.length) { no.replaceWith(Object.assign(document.createElement('span'), { textContent: '(nút Không đã bỏ trốn khỏi hệ thống)', style: 'font-size:18px;color:#555;align-self:center' })); yes.focus(); return; }
+    no.textContent = NO_TEXTS[tries];
+    const zr = zone.getBoundingClientRect(), nr = no.getBoundingClientRect();
+    no.style.position = 'absolute';
+    no.style.left = Math.random() * Math.max(10, zr.width - nr.width) + 'px';
+    no.style.top = Math.random() * Math.max(10, zr.height - nr.height) + 'px';
+    yesScale = Math.min(1.8, yesScale + .12); yes.style.transform = `scale(${yesScale})`;
+  };
+  no.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') run(); });
+  no.addEventListener('pointerdown', run);
+  no.addEventListener('click', e => { e.preventDefault(); run(); });
+  yes.addEventListener('click', () => { closeWin(w, true); SFX.tada(); install(); });
+}
+
+/* ---------- 2. installer ---------- */
+const INSTALL = ['Giải nén 1.000 nụ cười…', 'Sao chép may_mắn.dll…', 'Gỡ cài đặt muộn_phiền.exe…', 'Cập nhật nhan sắc lên bản mới nhất…', 'Tối ưu hoá giấc ngủ trưa…', 'Xoá 2 kg tăng cân dịp lễ… thất bại, bỏ qua', 'Cài đặt chế độ "được chiều" mặc định…', 'Còn 1 giây… (theo đồng hồ máy tính: 3 tiếng)'];
+async function install() {
+  const w = openWin({ id: 'setup', title: 'Cài đặt Hạnh phúc 20.10', icon: '💿', width: 440, closable: false, html:
+    `<div class="msg"><span class="big">💿</span><div>Đang cài đặt <b>Hạnh phúc 20.10</b> cho ${esc(S.to)}.<br>Vui lòng không tắt máy (hoặc tắt cũng được, hạnh phúc vẫn tự cài).</div></div>
+     <div class="prog sunken"><i id="pi"></i></div><p class="status" id="ps">Chuẩn bị…</p>` });
+  const pi = w.querySelector('#pi'), ps = w.querySelector('#ps');
+  for (let i = 0; i < INSTALL.length; i++) {
+    ps.textContent = INSTALL[i];
+    const target = i === INSTALL.length - 1 ? 99 : Math.round((i + 1) / INSTALL.length * 96);
+    pi.style.width = target + '%'; SFX.click();
+    await sleep(i === INSTALL.length - 1 ? 1500 : 620);
+  }
+  pi.style.width = '100%'; ps.textContent = 'Hoàn tất! Đã cài đặt 100% hạnh phúc.'; SFX.tada();
+  await sleep(700); closeWin(w, true);
+  openFlower(); setTimeout(openWish, isPhone() ? 900 : 400);
+  setTimeout(cuteError, 7000);
+}
+
+/* ---------- 3. pixel bouquet ---------- */
+function openFlower() {
+  const w = openWin({ id: 'flower', title: 'Bó hoa.exe', icon: '💐', width: 360, x: isPhone() ? undefined : innerWidth * .52, y: isPhone() ? 112 : innerHeight * .08,
+    html: `<canvas id="bq" width="64" height="64" class="sunken" aria-label="Bó hoa pixel"></canvas><div class="row"><button class="btn bevel" id="more">Thêm hoa</button><button class="btn bevel" id="water">Tưới 💧</button></div>` });
+  const cv = w.querySelector('#bq'), c = cv.getContext('2d');
+  let flowers = makeFlowers(), born = performance.now();
+  const draw = () => {
+    if (!cv.isConnected) return;
+    const t = (performance.now() - born) / 1000;
+    drawBouquet(c, flowers, t);
+    requestAnimationFrame(draw);
+  };
+  draw();
+  w.querySelector('#more').addEventListener('click', () => { flowers.push(...makeFlowers(3, true)); SFX.tada(); toast('+3 bông hoa đã được tải xuống 🌸'); });
+  w.querySelector('#water').addEventListener('click', () => { born = performance.now(); SFX.open(); toast('Hoa đã được tưới. Đang nở lại…'); });
+}
+const PALS = [['#FF5C8A', '#FFC2D4'], ['#FFB000', '#FFE8A3'], ['#9B5CFF', '#E2CCFF'], ['#FF7A3D', '#FFD3BF'], ['#FFFFFF', '#FFE3EE'], ['#3DC9C9', '#C2F5F5']];
+function makeFlowers(n = 9, extra = false) {
+  const a = [];
+  for (let i = 0; i < n; i++) {
+    const ang = -Math.PI / 2 + (Math.random() - .5) * 1.9, d = 14 + Math.random() * 11;
+    a.push({ x: 32 + Math.cos(ang) * d, y: 36 + Math.sin(ang) * d * .9, r: 2.5 + Math.random() * 2, p: pick(PALS), delay: extra ? 0 : Math.random() * 1.6 });
+  }
+  return a;
+}
+function px(c, x, y, col) { c.fillStyle = col; c.fillRect(Math.round(x), Math.round(y), 1, 1); }
+function drawBouquet(c, fl, t) {
+  c.fillStyle = '#FFF7FB'; c.fillRect(0, 0, 64, 64);
+  for (let i = 0; i < 18; i++) px(c, (i * 13) % 64, (i * 29 + Math.floor(t * 6)) % 64, '#FFE0EC');
+  // stems
+  for (const f of fl) { const k = Math.min(1, t / 1.2); c.strokeStyle = '#2E9E5B'; c.lineWidth = 1; c.beginPath(); c.moveTo(32.5, 50.5); c.lineTo(32.5 + (f.x - 32) * k, 50.5 + (f.y - 50) * k); c.stroke(); }
+  // flowers bloom
+  for (const f of fl) {
+    const k = Math.max(0, Math.min(1, (t - 1 - f.delay) / .6)); if (!k) continue;
+    const r = Math.max(1, Math.round(f.r * k)), wob = Math.round(Math.sin(t * 2 + f.x) * .6);
+    for (let dy = -r; dy <= r; dy++) for (let dx = -r; dx <= r; dx++) if (dx * dx + dy * dy <= r * r + 1) px(c, f.x + dx + wob, f.y + dy, (dx + dy) < -1 ? f.p[1] : f.p[0]);
+    px(c, f.x + wob, f.y, '#FFD23F');
+  }
+  // wrap
+  c.fillStyle = '#F49AC1'; c.beginPath(); c.moveTo(18, 44); c.lineTo(46, 44); c.lineTo(35, 62); c.lineTo(29, 62); c.closePath(); c.fill();
+  c.fillStyle = '#B4246C'; for (let y = 45; y < 62; y += 3) c.fillRect(30 + ((y / 3) % 2), y, 1, 1);
+  c.fillStyle = '#FFFFFF'; c.fillRect(27, 50, 10, 2);
+  c.fillStyle = '#B4246C'; c.fillRect(31, 49, 2, 4);
+  // sparkle
+  if (t > 2.5) { const s = Math.floor(t * 3) % 4; px(c, 10 + s * 12, 10 + (s % 2) * 6, '#FFD23F'); px(c, 52 - s * 9, 18 + s * 3, '#FF5C8A'); }
+}
+
+/* ---------- 4. notepad ---------- */
+let wishTimer = 0;
+function openWish() {
+  const w = openWin({ id: 'wish', title: 'Lời chúc.txt - Notepad', icon: '📄', width: 460, x: isPhone() ? undefined : innerWidth * .08, y: isPhone() ? 360 : innerHeight * .2,
+    html: `<div class="menubar"><span><u>T</u>ệp</span><span><u>S</u>ửa</span><span><u>Đ</u>ịnh dạng</span><span><u>T</u>rợ giúp</span></div><div class="paper sunken" id="paper"></div>`,
+    onClose: () => clearInterval(wishTimer) });
+  const paper = w.querySelector('#paper'), text = Array.from(wishText() + (S.from ? `\n\n— ${S.from}` : ''));
+  let i = RM ? text.length : 0; clearInterval(wishTimer);
+  const render = () => { paper.innerHTML = esc(text.slice(0, i).join('')) + '<span class="cur"></span>'; paper.scrollTop = paper.scrollHeight; };
+  render();
+  wishTimer = setInterval(() => { i = Math.min(text.length, i + 1); render(); if (i % 3 === 0) beep(1500 + Math.random() * 300, .015, 0, 'square', .015); if (i >= text.length) clearInterval(wishTimer); }, 40);
+}
+
+/* ---------- 5. cute error + cascade ---------- */
+function cuteError() {
+  if (document.getElementById('err')) return;
+  SFX.error(); vibrate([30, 40, 30]);
+  const w = openWin({ id: 'err', title: 'Lỗi hệ thống', icon: '⚠️', width: 380, html:
+    `<div class="msg"><span class="big">⚠️</span><div>Lỗi 2010: Mức độ dễ thương của <b>${esc(S.to)}</b> vượt quá giới hạn cho phép của hệ thống.</div></div>
+     <div class="row"><button class="btn bevel" id="eok">OK</button><button class="btn bevel" id="eign">Bỏ qua</button></div>` });
+  const go = async () => {
+    closeWin(w, true);
+    const made = [];
+    for (let k = 0; k < (isPhone() ? 9 : 14); k++) {
+      const e = openWin({ id: 'e' + k, title: 'Lỗi', icon: '❤️', width: 280, x: 20 + k * 22, y: 30 + k * 22, html: `<div class="msg"><span class="big">💖</span><div>Quá dễ thương.<br>Không thể xử lý.</div></div>` });
+      made.push(e); SFX.error(); await sleep(70);
+    }
+    await sleep(700);
+    for (const e of made.reverse()) { closeWin(e, true); beep(400 + Math.random() * 600, .04); await sleep(40); }
+    await sleep(250);
+    const ok = openWin({ id: 'fixed', title: 'Đã sửa lỗi', icon: '✅', width: 380, html:
+      `<div class="msg"><span class="big">✅</span><div>Đã nâng cấp bộ nhớ lên ∞ GB để chứa đủ sự dễ thương của ${esc(S.to)}.<br>Không cần khởi động lại.</div></div><div class="row"><button class="btn bevel" id="fk">Tuyệt</button></div>` });
+    SFX.tada(); ok.querySelector('#fk').addEventListener('click', () => closeWin(ok));
+  };
+  w.querySelector('#eok').addEventListener('click', go);
+  w.querySelector('#eign').addEventListener('click', go);
+}
+
+/* ---------- 6. virus scan ---------- */
+async function openScan() {
+  const w = openWin({ id: 'scan', title: 'Quét virus.exe', icon: '🛡️', width: 430, html:
+    `<div class="msg"><span class="big">🛡️</span><div>Đang quét ${esc(S.to)} để tìm mối đe doạ…</div></div><div class="prog sunken"><i id="si"></i></div><p class="status" id="ss"></p><div id="sres"></div>` });
+  const files = ['nụ_cười.exe', 'trái_tim.sys', 'sự_chu_đáo.dll', 'nhan_sắc.bin', 'tâm_hồn.cfg', 'tính_hài_hước.ini'];
+  for (let i = 0; i < files.length; i++) { if (!w.isConnected) return; w.querySelector('#ss').textContent = 'Quét: C:\\' + files[i]; w.querySelector('#si').style.width = ((i + 1) / files.length * 100) + '%'; SFX.click(); await sleep(420); }
+  if (!w.isConnected) return;
+  SFX.error();
+  w.querySelector('#ss').textContent = 'Phát hiện 3 "virus" nguy hiểm:';
+  w.querySelector('#sres').innerHTML = `<ul class="list sunken"><li>🦠 Nụ cười gây nghiện  (lây qua ánh mắt)</li><li>🦠 Sự chu đáo lây lan  (không có thuốc)</li><li>🦠 Nhan sắc không thể vá  (đã thử, bó tay)</li></ul>
+    <p class="status">Khuyến nghị: <b>GIỮ NGUYÊN</b>. Đây là tính năng, không phải lỗi.</p>
+    <div class="row"><button class="btn bevel" id="keep">Giữ nguyên</button><button class="btn bevel" disabled title="Không khả dụng">Cách ly</button></div>`;
+  w.querySelector('#keep').addEventListener('click', () => { closeWin(w); toast('Đã giữ nguyên 100% sự tuyệt vời ✨'); });
+}
+
+/* ---------- 7. recycle bin ---------- */
+function openTrash() {
+  const w = openWin({ id: 'trash', title: 'Thùng rác', icon: '🗑️', width: 400, html:
+    `<p class="status" style="margin:0 0 8px">Thùng rác (3 mục)</p><ul class="list sunken" id="tl"><li>📄 buồn_phiền.tmp</li><li>📄 deadline_quá_hạn.docx</li><li>🖼️ tin_nhắn_không_được_rep.jpg</li></ul>
+     <div class="row"><button class="btn bevel" id="empty">Dọn sạch</button></div>` });
+  w.querySelector('#empty').addEventListener('click', async () => {
+    const lis = [...w.querySelectorAll('#tl li')];
+    for (const li of lis) { li.style.textDecoration = 'line-through'; SFX.crumple(); await sleep(260); li.remove(); }
+    w.querySelector('#tl').innerHTML = '<li>(trống, như nỗi buồn hôm nay)</li>';
+    w.querySelector('.status').textContent = 'Thùng rác (0 mục)';
+    document.querySelector('[data-app="trash"] .ic').textContent = '🗑';
+    toast('Đã xoá vĩnh viễn nỗi buồn ✨'); SFX.tada();
+  });
+}
+
+/* ---------- 8. cat assistant ---------- */
+const JOKES = () => [
+  `Tại sao hôm nay máy chạy chậm? Vì nó mải ngắm ${S.to}.`,
+  'Bạn có phải Wi-Fi không? Vì đứng gần là thấy kết nối mạnh liền.',
+  'Bản cập nhật hôm nay: +20% dễ thương, −10% deadline, sửa lỗi "buồn vô cớ".',
+  `Mèo có 9 mạng, nhưng trên đời chỉ có 1 ${S.to} thôi.`,
+  `Cảnh báo: ở gần ${S.to} quá lâu có thể gây cười không kiểm soát.`,
+  '20/10 là ngày duy nhất lỗi "quá xinh" được đánh dấu là "Không sửa".',
+  'Mình đã thử Ctrl + F tìm người dễ thương hơn. Kết quả: 0 kết quả phù hợp.',
+  'Hôm nay ăn gì cũng được, miễn là có người trả tiền. Chúc mừng 20/10! 🍰'
+];
+let jokeI = 0;
+function cat(text, first) {
+  const box = $('#cat'), b = $('#catBubble');
+  box.hidden = false; SFX.meow();
+  b.innerHTML = `${esc(text)}<div class="row"><button class="btn bevel" id="cYes">${first ? 'Cần' : 'Nữa đi'}</button><button class="btn bevel" id="cNo">Đi chỗ khác</button></div>`;
+  b.querySelector('#cYes').addEventListener('click', () => { const j = JOKES(); cat(j[jokeI++ % j.length]); });
+  b.querySelector('#cNo').addEventListener('click', () => {
+    b.innerHTML = 'Không đi đâu, hôm nay là 20/10 mà 😼<div class="row"><button class="btn bevel" id="cOk">Thôi được</button></div>';
+    SFX.meow(); b.querySelector('#cOk').addEventListener('click', () => { b.innerHTML = '(Mèo đi ngủ. Chạm vào mèo để gọi dậy.)'; setTimeout(() => { if (b.textContent.startsWith('(Mèo')) b.parentElement.querySelector('.bubble').hidden = true; }, 2000); });
+  });
+  b.hidden = false;
+}
+$('#catFace').addEventListener('click', () => { const j = JOKES(); cat(j[jokeI++ % j.length]); });
+
+/* ---------- desktop icons ---------- */
+const APPS = { wish: openWish, flower: openFlower, scan: openScan, trash: openTrash };
+document.querySelectorAll('.icon').forEach(ic => ic.addEventListener('click', () => {
+  document.querySelectorAll('.icon').forEach(x => x.classList.toggle('sel', x === ic));
+  initAudio(); SFX.click(); APPS[ic.dataset.app]();
+}));
+
+/* ---------- start menu ---------- */
+const VERSIONS = [['index.html', '🌱', 'Hoa Mang Tên Bạn'], ['bo-hoa.html', '💐', 'Bó Hoa 20/10'], ['thiep-exe.html', '💾', 'Thiệp.exe']];
+function carry() { saveDraft(); return ''; }
+function buildVer() { const here = location.pathname.split('/').pop() || 'index.html'; $('#verLinks').innerHTML = VERSIONS.map(([f, i, n]) => `<a href="${f}${carry()}"><span>${i}</span>${n}${f === here ? ' ✓' : ''}</a>`).join(''); }
+$('#start').addEventListener('click', e => { e.stopPropagation(); buildVer(); const on = $('#menu').hidden; $('#menu').hidden = !on; $('#start').classList.toggle('on', on); SFX.click(); });
+document.addEventListener('pointerdown', e => { if (!e.target.closest('#menu,#start')) { $('#menu').hidden = true; $('#start').classList.remove('on'); } });
+$('#menu').addEventListener('click', e => {
+  const b = e.target.closest('[data-act]'); if (!b) return;
+  $('#menu').hidden = true; $('#start').classList.remove('on');
+  ({ make: openMaker, story: saveStory, cat: () => cat('Meo! Gọi mình có việc gì nè?', true), off: shutdown })[b.dataset.act]();
+});
+function shutdown() {
+  const w = openWin({ id: 'off', title: 'Tắt ThiệpOS', icon: '⏻', width: 380, html: `<div class="msg"><span class="big">🤔</span><div>Bạn có chắc muốn tắt máy?<br>Hạnh phúc vẫn sẽ chạy ngầm.</div></div><div class="row"><button class="btn bevel" id="sy">Tắt</button><button class="btn bevel" id="sn">Thôi</button></div>` });
+  w.querySelector('#sn').addEventListener('click', () => closeWin(w));
+  w.querySelector('#sy').addEventListener('click', () => { closeWin(w, true); [784, 659, 523, 392].forEach((f, i) => beep(f, .2, i * .15, 'triangle', .07)); setTimeout(() => $('#shutdown').hidden = false, 500); });
+}
+$('#shutdown').addEventListener('click', () => location.reload());
+
+/* ---------- maker + share ---------- */
+function openMaker() {
+  const w = openWin({ id: 'maker', title: 'Tạo thiệp - Trình hướng dẫn', icon: '✏️', width: 440, html:
+    `<p class="status" style="margin:0">Bước 1/1: Điền thông tin. Không có bước 2.</p>
+     <label class="fld">Gửi đến:<input class="sunken" id="mTo" maxlength="40" value="${S.to === 'bạn' ? '' : esc(S.to)}" placeholder="Mẹ, Lan, chị Hà…"></label>
+     <label class="fld">Từ:<input class="sunken" id="mFrom" maxlength="40" value="${esc(S.from)}" placeholder="Tên bạn"></label>
+     <label class="fld">Lời chúc (để trống = mặc định hài hước):<textarea class="sunken" id="mMsg" maxlength="320">${esc(S.m)}</textarea></label>
+     <p class="status">Thông tin chỉ nằm trên máy này. Không tạo link.</p>
+     <div class="row"><button class="btn bevel" id="mPrev">Áp dụng</button><button class="btn bevel" id="mImg">📸 Lưu ảnh</button></div>` });
+  const read = () => ({ to: cut(w.querySelector('#mTo').value, 40) || 'bạn', from: cut(w.querySelector('#mFrom').value, 40), m: cut(w.querySelector('#mMsg').value, 320), nick: S.nick });
+  w.querySelector('#mImg').addEventListener('click', () => { Object.assign(S, read()); saveDraft(); saveStory(); });
+  w.querySelector('#mPrev').addEventListener('click', () => { saveDraft(read()); location.reload(); });
+}
+
+/* ---------- story image 1080×1920 ---------- */
+async function saveStory() {
+  try { await document.fonts.load('40px VT323', 'Gửi Việt'); } catch (e) {}
+  const W = 1080, H = 1920, c = document.createElement('canvas'); c.width = W; c.height = H; const x = c.getContext('2d');
+  x.imageSmoothingEnabled = false;
+  const g = x.createLinearGradient(0, 0, W, H); g.addColorStop(0, '#2F9696'); g.addColorStop(1, '#257C7C'); x.fillStyle = g; x.fillRect(0, 0, W, H);
+  x.fillStyle = 'rgba(255,255,255,.12)'; x.font = '360px VT323'; x.textAlign = 'right'; x.fillText('20.10', W - 30, H - 200);
+  const bev = (X, Y, w, h, fill = '#C3C3C3') => { x.fillStyle = fill; x.fillRect(X, Y, w, h); x.fillStyle = '#fff'; x.fillRect(X, Y, w, 3); x.fillRect(X, Y, 3, h); x.fillStyle = '#0A0A0A'; x.fillRect(X, Y + h - 3, w, 3); x.fillRect(X + w - 3, Y, 3, h); x.fillStyle = '#808080'; x.fillRect(X + 3, Y + h - 6, w - 6, 3); x.fillRect(X + w - 6, Y + 3, 3, h - 6); };
+  const win = (X, Y, w, h, title) => { bev(X, Y, w, h); const tg = x.createLinearGradient(X, 0, X + w, 0); tg.addColorStop(0, '#B4246C'); tg.addColorStop(1, '#F49AC1'); x.fillStyle = tg; x.fillRect(X + 8, Y + 8, w - 16, 56); x.fillStyle = '#fff'; x.font = '46px VT323'; x.textAlign = 'left'; x.fillText(title, X + 22, Y + 50); bev(X + w - 60, Y + 14, 44, 42); x.fillStyle = '#000'; x.font = '40px VT323'; x.textAlign = 'center'; x.fillText('✕', X + w - 38, Y + 48); };
+  // bouquet window
+  win(110, 150, 860, 860, '💐 Bó hoa.exe');
+  const bq = document.createElement('canvas'); bq.width = bq.height = 64; drawBouquet(bq.getContext('2d'), makeFlowers(11).map(f => ({ ...f, delay: 0 })), 5);
+  x.drawImage(bq, 140, 230, 800, 760);
+  // notepad
+  win(60, 1010, 960, 640, '📄 Lời chúc.txt - Notepad');
+  x.fillStyle = '#fff'; x.fillRect(84, 1086, 912, 540);
+  x.fillStyle = '#000'; x.font = '44px VT323'; x.textAlign = 'left';
+  const lines = []; (wishText() + (S.from ? `\n— ${S.from}` : '')).split('\n').forEach(p => { let l = ''; p.split(' ').forEach(wd => { const t = l ? l + ' ' + wd : wd; if (x.measureText(t).width > 860 && l) { lines.push(l); l = wd; } else l = t; }); lines.push(l); });
+  lines.slice(0, 11).forEach((l, i) => x.fillText(l, 110, 1136 + i * 46));
+  // error popup
+  win(300, 880, 640, 230, '⚠️ Lỗi 2010');
+  x.fillStyle = '#000'; x.font = '42px VT323'; x.textAlign = 'left'; x.fillText(`Mức dễ thương của ${S.to}`, 330, 1000); x.fillText('vượt quá giới hạn hệ thống.', 330, 1046);
+  // taskbar
+  bev(0, H - 110, W, 110); bev(16, H - 92, 250, 74); x.fillStyle = '#000'; x.font = 'bold 48px VT323'; x.textAlign = 'left'; x.fillText('🌸 Bắt đầu', 32, H - 40);
+  x.textAlign = 'right'; x.font = '42px VT323'; x.fillText('20/10/2026', W - 40, H - 42);
+  x.textAlign = 'center'; x.fillStyle = '#fff'; x.font = '40px VT323'; x.fillText('💾 ThiệpOS 20.10 · Chúc mừng Ngày Phụ nữ Việt Nam', W / 2, H - 150);
+  const b = await new Promise(r => c.toBlob(r, 'image/png')); if (!b) return;
+  const file = new File([b], 'thiep-exe-story.png', { type: 'image/png' });
+  if (navigator.canShare && navigator.canShare({ files: [file] }) && matchMedia('(pointer:coarse)').matches) { try { await navigator.share({ files: [file], title: 'Thiệp.exe' }); return; } catch (e) { if (e.name === 'AbortError') return; } }
+  const a = document.createElement('a'); a.href = URL.createObjectURL(b); a.download = 'thiep-exe-story.png'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(a.href), 4000);
+  toast('Đã lưu ảnh Story 1080×1920 📸');
+}
+
+/* ---------- go ---------- */
+if (OG) { document.body.classList.add('og'); $('#boot').hidden = true; openFlower(); openWish(); setTimeout(cuteError, 50); }
+else boot();
+})();
+</script>
+</body>
+</html>
