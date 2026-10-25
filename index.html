@@ -129,6 +129,13 @@
       border-radius: 999px;
       box-shadow: var(--shadow-toon);
       max-width: 96vw;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+
+    .storybook-nav::-webkit-scrollbar {
+      display: none;
     }
 
     .nav-tab {
@@ -1656,11 +1663,11 @@
        THANH ĐIỀU HƯỚNG CÁC CHƯƠNG
        ===================================================== -->
   <nav class="storybook-nav" aria-label="Điều hướng các chương">
-    <button class="nav-tab active" onclick="jumpChapter('chap1', this)">01. Bìa</button>
-    <button class="nav-tab" onclick="jumpChapter('chapFlowers', this)">02. Card Hoa</button>
-    <button class="nav-tab" onclick="jumpChapter('chap2', this)">03. Chỉ Số</button>
-    <button class="nav-tab" onclick="jumpChapter('chap3', this)">04. Blind Box</button>
-    <button class="nav-tab" onclick="jumpChapter('chap4', this)">05. Thổi Nến</button>
+    <button class="nav-tab active" data-target="chap1" onclick="jumpChapter('chap1', this)">01. Bìa</button>
+    <button class="nav-tab" data-target="chapFlowers" onclick="jumpChapter('chapFlowers', this)">02. Card Hoa</button>
+    <button class="nav-tab" data-target="chap2" onclick="jumpChapter('chap2', this)">03. Chỉ Số</button>
+    <button class="nav-tab" data-target="chap3" onclick="jumpChapter('chap3', this)">04. Blind Box</button>
+    <button class="nav-tab" data-target="chap4" onclick="jumpChapter('chap4', this)">05. Thổi Nến</button>
     <button class="sound-toggle" id="musicBtn" aria-label="Bật hoặc tắt nhạc nền" title="Bật/Tắt nhạc hộp nhạc">
       <svg id="soundIconOn" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2B1638" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M9 18V5l12-2v13"/>
@@ -2582,14 +2589,88 @@
       if (!musicOn) toggleMusic();
       document.getElementById('introOverlay').classList.add('closed');
       spawnConfetti(55);
+      setTimeout(updateActiveNavOnScroll, 120);
     });
 
+    // SCROLLSPY: TỰ ĐỘNG ACTIVE TAB KHI CUỘN ĐẾN PHÂN ĐOẠN TƯƠNG ỨNG
+    let isManualScrolling = false;
+    let manualScrollTimer = null;
+    let scrollRafId = null;
+
     function jumpChapter(id, btn) {
-      document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
-      if (btn) btn.classList.add('active');
+      isManualScrolling = true;
+      clearTimeout(manualScrollTimer);
+
+      document.querySelectorAll('.storybook-nav .nav-tab').forEach(b => b.classList.remove('active'));
+      if (btn) {
+        btn.classList.add('active');
+        btn.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
       const el = document.getElementById(id);
       if (el) el.scrollIntoView({ behavior: 'smooth' });
+
+      manualScrollTimer = setTimeout(() => {
+        isManualScrolling = false;
+        updateActiveNavOnScroll();
+      }, 850);
     }
+
+    function updateActiveNavOnScroll() {
+      if (isManualScrolling) return;
+
+      const chapterIds = ['chap1', 'chapFlowers', 'chap2', 'chap3', 'chap4'];
+      const chapters = chapterIds
+        .map(id => ({ id, el: document.getElementById(id) }))
+        .filter(c => c.el !== null);
+
+      if (!chapters.length) return;
+
+      // 1. Nếu cuộn sát đáy trang -> luôn kích hoạt tab cuối cùng (chap4)
+      const scrollBottom = window.innerHeight + window.scrollY;
+      const docHeight = document.documentElement.scrollHeight;
+      if (docHeight - scrollBottom < 100) {
+        highlightNavTab('chap4');
+        return;
+      }
+
+      // 2. Điểm kích hoạt chuẩn: khi mép trên của section trôi qua tầm 140px (ngay dưới nav)
+      const triggerY = Math.min(window.innerHeight * 0.35, 160);
+
+      let currentId = chapters[0].id;
+      for (let i = 0; i < chapters.length; i++) {
+        const rect = chapters[i].el.getBoundingClientRect();
+        if (rect.top <= triggerY) {
+          currentId = chapters[i].id;
+        }
+      }
+
+      highlightNavTab(currentId);
+    }
+
+    function highlightNavTab(id) {
+      const tabs = document.querySelectorAll('.storybook-nav .nav-tab');
+      tabs.forEach(tab => {
+        const isMatch = (tab.dataset.target === id) ||
+                        (tab.getAttribute('onclick') && tab.getAttribute('onclick').includes(`'${id}'`));
+        if (isMatch) {
+          if (!tab.classList.contains('active')) {
+            tab.classList.add('active');
+            tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          }
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', () => {
+      if (isManualScrolling) return;
+      if (scrollRafId) return;
+      scrollRafId = requestAnimationFrame(() => {
+        scrollRafId = null;
+        updateActiveNavOnScroll();
+      });
+    }, { passive: true });
 
     // 4. SỰ KIỆN CHƯƠNG 1: ĐỔI NHÂN VẬT HOẠT HÌNH & DÁN ẢNH THẬT
     document.getElementById('switchChibiBtn').addEventListener('click', () => {
@@ -3029,6 +3110,7 @@
 
     initPageContent();
     loopConfetti();
+    updateActiveNavOnScroll();
   </script>
 </body>
 </html>
